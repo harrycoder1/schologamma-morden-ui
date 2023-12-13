@@ -2,26 +2,168 @@
 @tailwind components;
 @tailwind utilities;
 
-:root {
-  --foreground-rgb: 0, 0, 0;
-  --background-start-rgb: 214, 219, 220;
-  --background-end-rgb: 255, 255, 255;
+body{
+  background: black;
+  height: 5571px;
+  width: 100vw;
+  overflow-x: hidden;
+  color: #ffff;
+  /* position: relative; */
+
+}
+.blur-slide-h{
+  /* absolute top-0 right-0 bottom-0 left-0 z-[-50] */
+  position: absolute;
+  top: 0;
+  right: 0;
+  left: 0;
+  bottom: 0;
+  z-index: -50;
+}
+.blur-01,
+.blur-01 * {
+  box-sizing: border-box;
+}
+.blur-01 {
+  overflow: hidden;
+  background: #002853;
+  border-radius: 50%;
+  width: 1013px;
+  height: 1013px;
+  position: relative;
+  filter: blur(282px);
+  /* translate: -336px -305px; */
+  position: absolute;
+  top: -305px;
+  left: -336px;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --foreground-rgb: 255, 255, 255;
-    --background-start-rgb: 0, 0, 0;
-    --background-end-rgb: 0, 0, 0;
-  }
+.blur-02,
+.blur-02 * {
+  box-sizing: border-box;
+}
+.blur-02 {
+  overflow: hidden;
+  background: #07325f;
+  border-radius: 50%;
+  width: 777px;
+  height: 777px;
+  position: relative;
+  filter: blur(282px);
+  /* translate: 857px 1284px; */
+  position: absolute;
+  top:1284px ;
+  /* left:857px ; */
+  right: -180px;
 }
 
-body {
-  color: rgb(var(--foreground-rgb));
-  background: linear-gradient(
-      to bottom,
-      transparent,
-      rgb(var(--background-end-rgb))
-    )
-    rgb(var(--background-start-rgb));
+
+.blur-03,
+.blur-03 * {
+  box-sizing: border-box;
+}
+.blur-03 {
+  overflow: hidden;
+  background: #072d56;
+  border-radius: 50%;
+  width: 701px;
+  height: 496px;
+  position: relative;
+  transform-origin: 0 0;
+  transform: rotate(0deg) scale(1, 1);
+  filter: blur(282px);
+  position: absolute;
+  top:500px ;
+  /* left:1127px ; */
+  right: -200px;
+  /* translate:  ; */
+}
+
+
+.blur-04,
+.blur-04 * {
+  box-sizing: border-box;
+}
+.blur-04 {
+  overflow: hidden;
+  background: #07325f;
+  border-radius: 50%;
+  width: 777px;
+  height: 777px;
+  position: relative;
+  filter: blur(282px);
+  /* translate: -418px 2939px; */
+  position: absolute;
+  left: -318px;
+  top: 2499px;
+}
+
+/* .blur-05,
+.blur-05 * {
+  box-sizing: border-box;
+}
+.blur-05 {
+  background: #07325f;
+  border-radius: 50%;
+  width: 777px;
+  height: 777px;
+  position: relative;
+  filter: blur(282px);
+  translate: 1218px 500px;
+} */
+/* Figma Styles of your File */
+/* :root { */
+  /* Colors */
+  /* --light-gradient: linear-gradient( */
+    /* 157.81deg,
+    rgba(222, 249, 250, 1) 0.8877529762685299%,
+    rgba(190, 243, 245, 1) 17.229999601840973%,
+    rgba(157, 237, 240, 1) 42.03999936580658%,
+    rgba(125, 231, 235, 1) 55.11999726295471%,
+    rgba(92, 225, 230, 1) 71.5399980545044%,
+    rgba(51, 187, 207, 1) 100%
+  ); */
+
+  /* Fonts */
+  /* Effects */
+/* } */
+
+
+/* ====================For Navigation bar */
+.nav_link_text{
+  padding: 4px 2px;
+}
+
+.blur_bg{
+/* From https://css.glass */
+background: rgba(59, 90, 110, 0.34);
+border-radius: 4px;
+box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+backdrop-filter: blur(5.2px);
+-webkit-backdrop-filter: blur(5.2px);
+border: 1px solid rgba(59, 90, 110, 0.44);
+}
+
+
+
+body::-webkit-scrollbar {
+  width: 1em;
+}
+ 
+body::-webkit-scrollbar-track {
+  /* box-shadow: inset 0 0 6px blue; */
+  background: none;
+
+}
+ 
+body::-webkit-scrollbar-thumb {
+  border-radius: 22px;
+  /* background-color: darkgrey;
+   */
+   background: rgb(2,0,36);
+   background: -moz-linear-gradient(174deg, rgba(2,0,36,1) 0%, rgba(21,147,203,1) 0%, rgba(146,239,253,0) 100%);
+   background: -webkit-linear-gradient(174deg, rgba(2,0,36,1) 0%, rgba(21,147,203,1) 0%, rgba(146,239,253,0) 100%);
+   background: linear-gradient(174deg, rgba(2,0,36,1) 0%, rgba(21,147,203,1) 0%, rgba(146,239,253,0) 100%);
+   filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#020024",endColorstr="#92effd",GradientType=1);
+   /* outline: 1px solid slategrey; */
 }

@@ -1,0 +1,36 @@
+import React from 'react'
+import '@/styles/update.css'
+export default function Update() {
+  return (
+    <div className="flex justify-center items-center mt-[150px] ">
+
+   
+    <div className='update_box'>
+        <div className="update_blur"></div>
+     {/* data section */}
+     <div className="flex flex-col justify-center  items-center">
+        <div className="up_heading pt-[38px] pb-[15px] text-[32px] lg:text-[64px]">
+        Our Latest Updates
+        </div>
+
+        <div className="up_content flex  justify-center  lg:flex-row flex-col mt-[40px] ">
+
+     
+    <div className="up_left   lg:w-[43%]">
+<div className="up_text_heading">
+TechBuzz 2.O
+</div>
+<div className="up_msg mt-[40px] text-[14px] lg:text-[20px]">Arcu tortor, purus in mattis at sed integer faucibus. Aliquet quis aliquet eget mauris tortor.ç Aliquet ultrices ac, ametau.</div>
+<button className="up_btn mt-[60px] rounded-sm  ">Expore...</button>
+    </div>
+    <div className="up_right lg:w-[43%] flex justify-center  ">
+        <div className="up_img_box lg:w-[334px] w-[250px] rounded-sm">
+
+        </div>
+    </div>
+     </div>
+     </div>
+    </div>
+    </div>
+  )
+}

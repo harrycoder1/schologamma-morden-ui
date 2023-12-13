@@ -1,7 +1,8 @@
 import type { Metadata } from 'next'
-import { Inter } from 'next/font/google'
+import { Inter , Manrope } from 'next/font/google'
 import './globals.css'
-
+import { Nav } from '@/components'
+const monocque = Manrope({weight:["800" , "300" ,"200" , "600" ,"700" ,"400"] ,subsets:['cyrillic' ,'cyrillic-ext'] })
 const inter = Inter({ subsets: ['latin'] })
 
 export const metadata: Metadata = {
@@ -16,7 +17,22 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body className={inter.className}>{children}</body>
+      <body className={`${monocque.className} myscreen`}>
+      <div className="blur-slide-h ">
+ <div className="blur-01"></div>
+ <div className="blur-02"></div>
+  <div className="blur-03  "></div>
+  <div className="blur-04"></div>
+  <div className="blur-05"></div>
+
+  </div>
+  <div className="px-[16px] md:px-[32px] lg:px-[64px] xl:px-[128px]">
+
+
+<Nav /> 
+        {children}
+        </div>
+        </body>
     </html>
   )
 }
