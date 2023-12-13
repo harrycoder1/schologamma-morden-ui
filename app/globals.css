@@ -13,12 +13,22 @@ body{
 }
 .blur-slide-h{
   /* absolute top-0 right-0 bottom-0 left-0 z-[-50] */
+  
   position: absolute;
   top: 0;
   right: 0;
   left: 0;
   bottom: 0;
   z-index: -50;
+}
+
+.blur_cont{
+  overflow-x: hidden;
+  width: 100%;
+  position: relative;
+  z-index: 4;
+  height: 5571px;
+
 }
 .blur-01,
 .blur-01 * {
@@ -29,6 +39,7 @@ body{
   background: #002853;
   border-radius: 50%;
   width: 1013px;
+  /* width: auto; */
   height: 1013px;
   position: relative;
   filter: blur(282px);
@@ -47,6 +58,7 @@ body{
   background: #07325f;
   border-radius: 50%;
   width: 777px;
+  /* width: auto; */
   height: 777px;
   position: relative;
   filter: blur(282px);
@@ -66,7 +78,8 @@ body{
   overflow: hidden;
   background: #072d56;
   border-radius: 50%;
-  width: 701px;
+width: 701px;
+  /* width: auto; */
   height: 496px;
   position: relative;
   transform-origin: 0 0;
@@ -85,10 +98,11 @@ body{
   box-sizing: border-box;
 }
 .blur-04 {
-  overflow: hidden;
+  overflow-x: hidden;
   background: #07325f;
   border-radius: 50%;
   width: 777px;
+  /* width: auto; */
   height: 777px;
   position: relative;
   filter: blur(282px);

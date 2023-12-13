@@ -19,14 +19,17 @@ export default function RootLayout({
     <html lang="en">
       <body className={`${monocque.className} myscreen`}>
       <div className="blur-slide-h ">
+        <div className="blur_cont">
+
+       
  <div className="blur-01"></div>
  <div className="blur-02"></div>
   <div className="blur-03  "></div>
   <div className="blur-04"></div>
   <div className="blur-05"></div>
-
   </div>
-  <div className="px-[16px] md:px-[32px] lg:px-[64px] xl:px-[128px]">
+  </div>
+  <div className="w-[100vw] px-[8px] md:px-[32px] lg:px-[64px] xl:px-[128px]">
 
 
 <Nav /> 
