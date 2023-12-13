@@ -35,7 +35,7 @@ flex-shrink: 0;
 font-size: 24px;
 font-style: normal;
 font-weight: 800;
-line-height: 75px; /* 312.5% */
+/* line-height: 75px; 312.5% */
 letter-spacing: -0.96px;
 }
 

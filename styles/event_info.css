@@ -55,14 +55,14 @@ border: 1px solid rgba(177, 39, 38, 0.36);
 
 .event_info_right{
     height: 790px;
-    overflow-y: scroll;
+    overflow-x: scroll;
 }
 
 /* for event view card */
 .e_view_card{
-    height: 750px;
+    /* height: 750px;
     max-width: 400px;
-    width: auto;
+    width: auto; */
     /* background-color: #09294a; */
     /* From https://css.glass */
 /* background: rgba(38, 74, 177, 0.24); */

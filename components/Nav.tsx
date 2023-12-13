@@ -42,7 +42,7 @@ const [isToogle ,setIsToggle] =useState(false)
 </nav>
 {/* mobile menu  Bar  */}
 {isToogle &&
-  <div className="absolute top-[40px] right-3 ">
+  <div className="absolute top-[70px] right-3 lg:hidden ">
     {/* <button className="close_btn"><IoClose /></button> */}
      <div className="blur_bg flex flex-col ">
 

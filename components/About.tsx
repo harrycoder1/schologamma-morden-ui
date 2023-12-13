@@ -9,13 +9,13 @@ export default function About() {
  <div className="flex justify-center items-center mt-[150px] ">
 
    
-<div className='about_box w-[320px] md:w-auto lg:w-[1170px]'>
+<div className='about_box w-[95%]  md:w-auto lg:w-[1170px]'>
     <div className="about_blur"></div>
  {/* data section */}
-<div className="about_data_cont p-[73px]">
+<div className="about_data_cont p-[16px] lg:p-[73px]">
 
 <div className="upper_cont flex flex-col justify-between lg:flex-row">
-<div className="left_upper_cont ">
+<div className="left_upper_cont mb-[16px] lg:mb-0 ">
   <div className="line_upper"></div>
   <div className="heading_upper_cont">Who we are</div>
 </div>
@@ -42,9 +42,9 @@ export default function About() {
 {/* for cards */}
 {about_card.map(item=>(
   <div className="down_card">
-<div className="left_upper_cont  mb-[20px]">
+<div className="left_upper_cont mt-[20px] mb-[12px] lg:mb-[20px]">
   <div className="line_upper"></div>
-  <div className="heading_upper_cont">{item.title}</div>
+  <div className="heading_upper_cont ">{item.title}</div>
 
 </div>
 

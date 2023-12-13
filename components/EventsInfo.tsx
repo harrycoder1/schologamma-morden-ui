@@ -5,8 +5,14 @@ import Image from 'next/image'
 import { LiaExpandSolid } from "react-icons/lia";
 import { IoMdClose } from "react-icons/io";
 export const ViewEvent =({setIsView} :{setIsView:any}) =>{
+   {/* height: ;
+    max-width: 400px;
+    width: auto; */}
   return (
-    <div className="e_view_card">
+    <div className="flex justify-center items-center">
+
+  
+    <div className="e_view_card w-[90%] lg:w-[400px] ">
   <div className="e_img">
 <Image src={"/eventcard.jpg"} width={400} height={500} alt='photo' className='h-[100%] w-[100%] rounded-sm'/>
 <div className="e_img_view ">
@@ -62,6 +68,7 @@ export const ViewEvent =({setIsView} :{setIsView:any}) =>{
 
   </div>
 </div>
+</div>
   )
 }
 
@@ -113,7 +120,7 @@ const [isView ,setIsView] =useState(false)
       </div>}
 
 </div>
-<div className="event_info_right flex  w-[330px] md:w-[600px] flex-wrap ">
+<div className="event_info_right flex  w-[330px] md:w-[600px] lg:flex-wrap overflow-x-scroll lg:overflow-y-scroll ">
 
 {/* event cards start here */}
 {[1,2,3,4,5].map(item=>(

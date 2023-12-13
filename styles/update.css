@@ -1,7 +1,7 @@
 .update_box{
-    max-width: 1170px;
-    width: auto;
-min-height: 695px;
+    /* max-width: 1170px; */
+    /* width: auto;
+min-height: 695px; */
 height: auto;
 /* flex-shrink: 0; */
 background: #042C54;
@@ -24,7 +24,7 @@ z-index: -20;
 }
 .up_heading{
     /* font-family: Manrope; */
-font-size: 62px;
+/* font-size: 62px; */
 font-style: normal;
 font-weight: 800;
 line-height: 75px; /* 120.968% */
@@ -45,7 +45,7 @@ background-color: #09294a;
 .up_text_heading{
     color: #FFF;
 /* font-family: Poppins; */
-font-size: 42px;
+/* font-size: 42px; */
 font-style: normal;
 font-weight: 600;
 line-height: 80%; /* 76.8px */
