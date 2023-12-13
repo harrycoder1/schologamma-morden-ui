@@ -6,20 +6,22 @@ import '@/styles/events.css'
 export default function Committee() {
     const [isView ,setIsView] = useState(false)
   return (
-    <div>
+    <div className='flex justify-center items-center'>
   
   {/* data start her  */}
-  <div className="mt-[32px] flex flex-row">
-<div className="comte_left">
+  <div className="mt-[32px] flex flex-col lg:flex-row">
+<div className="comte_left hidden lg:block">
 <ViewEvent setIsView={setIsView}  />
 
 </div>
-<div className="comte_right lg:ml-[42px]  cmte_box ">
+<div className="comte_right mt-[20px] lg:mt-0 lg:ml-[42px] w-[90%] cmte_box  lg:w-[805px]">
     <div className="cmte_blur"></div>
-<div className="search_bar mt-[30px] flex flex-row justify-center ">
-<input  placeholder='Enter the event name focus:outline-none focus-within:outline-none' className='search_input focus-visible:outline-none'/>
-<button className='search_btn lg:mr-[12px] ' >Search</button> 
-<select name="Committies " id="cars" className='dropdown_btn focus:outline-none focus-within:outline-none'>
+<div className="search_bar mt-[30px] flex flex-row justify-center flex-wrap lg:flex-nowrap ">
+<input  placeholder='Enter the event name' className='search_input lg:w-[340px]  md:w-auto w-[200px] focus:outline-none focus-within:outline-none  focus-visible:outline-none '/>
+
+  
+<button className='search_btn lg:w-[100px] w-[60px] lg:mr-[12px]  ' >Search</button> 
+<select name="Committies " id="cars" className='dropdown_btn w-[120px] lg:w-[250px]  focus:outline-none focus-within:outline-none'>
     <option value="volvo">choose committee</option>
     <option value="saab">Technical</option>
     <option value="opel">Digital</option>
@@ -31,7 +33,7 @@ export default function Committee() {
 
 
 {/* other category  */}
-<div className="flex flex-row justify-center mt-[20px]">
+<div className="flex flex-row flex-wrap justify-center mt-[20px]">
 
 
 {["Latest","Upcomming" ,"offline" , "QUize" ,"Online" ].map(item =>(
@@ -41,7 +43,7 @@ export default function Committee() {
     </div>
 ))}
 
-<select name="type" id="" className='dropdown_btn focus:outline-none  focus-within:outline-none'>
+<select name="type" id="" className='dropdown_btn w-[120px] lg:w-[250px] focus:outline-none  focus-within:outline-none'>
     <option  value="">type of Events</option>
     <option value="saab">cultural</option>
     <option value="opel">seminar</option>

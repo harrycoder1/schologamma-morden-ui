@@ -35,14 +35,14 @@ const [isToogle ,setIsToggle] =useState(false)
   </div>
   {/* for mobile view */}
 
-  <div className="lg:hidden">
+  <div className="lg:hidden ">
 <button className='text-[24px]' onClick={()=>setIsToggle(pre=>!pre)}>{isToogle?<IoClose />:<RiMenu3Line />} </button>
   </div>
 </div>
 </nav>
 {/* mobile menu  Bar  */}
 {isToogle &&
-  <div className="absolute top-[70px] right-3 lg:hidden ">
+  <div className="absolute top-[70px] right-3 lg:hidden z-50 " onClick={()=>setIsToggle(false)}>
     {/* <button className="close_btn"><IoClose /></button> */}
      <div className="blur_bg flex flex-col ">
 

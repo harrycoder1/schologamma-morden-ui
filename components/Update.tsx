@@ -5,7 +5,7 @@ export default function Update() {
     <div className="flex justify-center items-center mt-[150px] ">
 
    
-    <div className='update_box w-[95%] lg:w-[1170px]  p-[14px] md:p-0'>
+    <div className='update_box w-[95%] lg:w-[1170px]  p-[14px] md:p-0 '>
         <div className="update_blur"></div>
      {/* data section */}
      <div className="flex flex-col justify-center  items-center">
@@ -24,7 +24,7 @@ TechBuzz 2.O
 <button className="up_btn mt-[60px] hidden lg:block rounded-sm  ">Expore...</button>
     </div>
     <div className="up_right  lg:w-[43%] flex justify-center  ">
-        <div className="up_img_box lg:w-[334px] w-[250px] rounded-sm">
+        <div className="up_img_box lg:w-[334px] w-[250px] rounded-sm mb-[20px] ">
 
         </div>
     </div>

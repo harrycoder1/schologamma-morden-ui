@@ -91,10 +91,10 @@ export const EventCard = () =>{
 export default function EventsInfo() {
 const [isView ,setIsView] =useState(false)
   return (
-    <div className="flex justify-center relative">
+    <div className="flex justify-center relative mt-[100px] md:mt-[170px] lg:mt-[250px] ">
 
     
-    <div className='mt-[250px] w-[340px] md:w-auto lg:w-[1172px]'>
+    <div className=' w-[340px] md:w-auto lg:w-[1172px]'>
 <div className="event_info_top flex flex-row justify-center items-center">
   <div className="event_info_top_left text-[32px] lg:text-[64px] ">Engaging Events to Explore
  Opportunities</div>
@@ -120,7 +120,7 @@ const [isView ,setIsView] =useState(false)
       </div>}
 
 </div>
-<div className="event_info_right flex  w-[330px] md:w-[600px] lg:flex-wrap overflow-x-scroll lg:overflow-y-scroll ">
+<div className="event_info_right flex h-[410px] lg:h-[790px] w-[90%]  md:w-[600px] lg:flex-wrap overflow-x-scroll lg:overflow-y-scroll   ">
 
 {/* event cards start here */}
 {[1,2,3,4,5].map(item=>(

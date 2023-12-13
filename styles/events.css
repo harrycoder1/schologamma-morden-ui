@@ -1,5 +1,5 @@
 .cmte_box{
-    width: 805px;
+    /* width: 805px; */
 height: 695px;
 
 position: relative;
@@ -39,7 +39,6 @@ backdrop-filter: blur(3.8px);
 -webkit-backdrop-filter: blur(3.8px);
 }
 .search_input{
-    width: 340px;
     height: 40px;
     border-radius: 4px;
     color: #1B78DE;
@@ -58,7 +57,7 @@ border: 1px solid rgba(124, 157, 194, 0.51);
     border-radius: 6px;
     /* font-weight: 400; */
     font-size: 13px;
-    width: 100px;
+    /* width: 100px; */
 
 border:2px rgb(15, 150, 139) solid ;
 border-radius: 8px;
@@ -72,7 +71,7 @@ box-sizing: border-box;
     color: white;
 }
 .dropdown_btn{
-    width: 250px;
+    /* width: 250px; */
     height: 40px;
     border-radius: 5px;
 /* From https://css.glass */
