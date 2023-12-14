@@ -217,3 +217,29 @@ backdrop-filter: blur(5.3px);
 -webkit-backdrop-filter: blur(5.3px);
 border: 1px solid rgba(83, 160, 201, 0.3);
 }
+
+.heading-span {
+  text-align: center;
+  /* font-family: Manrope; */
+  /* font-size: 62px; */
+  font-style: normal;
+  /* font-weight: 800; */
+  line-height: 75px; /* 120.968% */
+  letter-spacing: -2.48px;
+  background: linear-gradient(90deg, #AE67FA 1.84%, #F49867 102.67%);
+background-clip: text;
+-webkit-background-clip: text;
+-webkit-text-fill-color: transparent;
+}
+.heading-span2 {
+  background: var(--lightGradient, linear-gradient(158deg, #DEF9FA -43.27%, #BEF3F5 -21.24%, #9DEDF0 12.19%, #7DE7EB 29.82%, #5CE1E6 51.94%, #33BBCF 90.29%));
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  /* font-family: Manrope; */
+  /* font-size: 32px; */
+  font-style: normal;
+  /* font-weight: 800; */
+  line-height: 75px;
+  letter-spacing: -1.28px;
+}

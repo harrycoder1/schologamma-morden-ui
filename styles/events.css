@@ -15,6 +15,23 @@ backdrop-filter: blur(3.8px);
 -webkit-backdrop-filter: blur(3.8px);
 border: 1px solid rgba(4, 44, 84, 0.36);
 }
+
+.event_card_box{
+    /* height: 695px; */
+
+position: relative;
+/* overflow-y: scroll; */
+overflow: hidden;
+z-index: 1;
+
+/* From https://css.glass */
+background: rgba(4, 44, 84, 0.4);
+/* border-radius: 16px; */
+box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+backdrop-filter: blur(3.8px);
+-webkit-backdrop-filter: blur(3.8px);
+border: 1px solid rgba(4, 44, 84, 0.36);
+}
 .cmte_blur{
     width: 623px;
     height: 558px;
@@ -25,6 +42,23 @@ border: 1px solid rgba(4, 44, 84, 0.36);
     position: absolute;
     top: -233px;
     right: -280px;
+    z-index: -19;
+opacity: 0.5;
+    /* From https://css.glass */
+
+    /* overflow: hidden; */
+}
+
+.cmte_blur2{
+    width: 623px;
+    height: 558px;
+    /* flex-shrink: 0; */
+    border-radius: 623px;
+    background: #1B78DE;
+    filter: blur(100px);
+    position: absolute;
+    top: -433px;
+    right: -380px;
     z-index: -19;
 opacity: 0.5;
     /* From https://css.glass */

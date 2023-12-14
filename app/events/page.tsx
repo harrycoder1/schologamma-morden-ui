@@ -52,7 +52,7 @@ export default function Committee() {
 </div>
 
 {/* for search events container */}
-<div className="eve_container">
+<div className="eve_container mt-[50px]">
     {/* all cards here... */}
     <div className=" flex flex-row justify-center flex-wrap overflow-y-visible mt-[23px]">
     

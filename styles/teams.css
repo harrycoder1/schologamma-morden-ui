@@ -1,0 +1,65 @@
+.user_card_box{
+    /* height: 695px; */
+
+position: relative;
+/* overflow-y: scroll; */
+overflow: hidden;
+z-index: 1;
+
+/* From https://css.glass */
+background: rgba(4, 44, 84, 0.4);
+/* border-radius: 16px; */
+box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+backdrop-filter: blur(3.8px);
+-webkit-backdrop-filter: blur(3.8px);
+border: 1px solid rgba(4, 44, 84, 0.36);
+}
+
+
+.user_blur{
+    width: 623px;
+    height: 558px;
+    /* flex-shrink: 0; */
+    border-radius: 623px;
+    background: #1B78DE;
+    filter: blur(100px);
+    position: absolute;
+    top: -433px;
+    right: -380px;
+    z-index: -19;
+opacity: 0.5;
+    /* From https://css.glass */
+
+    /* overflow: hidden; */
+}
+
+.social_media_btn{
+    width: 35px;
+    height: 35px;
+    font-size: 20px;
+    display:flex ; 
+    justify-content: center;
+    align-items: center;
+    margin: 6px;
+/* From https://css.glass */
+/* From https://css.glass */
+background: rgba(123, 241, 255, 0.06);
+border-radius: 8px;
+cursor: pointer;
+box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+backdrop-filter: blur(4.5px);
+-webkit-backdrop-filter: blur(4.5px);
+border: 1px solid rgba(123, 241, 255, 0.1);
+}
+.dropdown_btn{
+    /* width: 250px; */
+    height: 40px;
+    border-radius: 5px;
+/* From https://css.glass */
+background: rgba(27, 120, 222, 0.32);
+/* border-radius: 16px; */
+box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+backdrop-filter: blur(5.8px);
+-webkit-backdrop-filter: blur(5.8px);
+border: 1px solid rgba(27, 120, 222, 0.51);
+}

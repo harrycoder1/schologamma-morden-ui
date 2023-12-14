@@ -78,7 +78,7 @@ export const ViewEvent =({setIsView} :{setIsView:any}) =>{
 
 export const EventCard = () =>{
   return(
-    <div className="event_card_cont  mt-[50px]" >
+    <div className="event_card_cont  " >
     {/* event card */}
       <div className="event_info_card rounded-sm m-[8px]">
         <Image src={"/eventcard.jpg"} width={700} height={1020} alt='name' className='w-[100%] h-[100%] rounded-sm z-[-18]' />
@@ -128,7 +128,7 @@ const [isView ,setIsView] =useState(false)
       </div>}
 
 </div>
-<div className="event_info_right flex h-[410px] lg:h-[790px] w-[90%]  md:w-[600px] lg:flex-wrap overflow-x-scroll lg:overflow-y-scroll   ">
+<div className="event_info_right mt-[50] flex h-[410px] lg:h-[790px] w-[90%]  md:w-[600px] lg:flex-wrap overflow-x-scroll lg:overflow-y-scroll   ">
 
 {/* event cards start here */}
 {[1,2,3,4,5].map(item=>(
