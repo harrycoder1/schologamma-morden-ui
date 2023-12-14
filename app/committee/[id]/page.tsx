@@ -2,7 +2,8 @@ import React from 'react'
 import '@/styles/committeebyid.css'
 import Image from 'next/image'
 import { EventCard } from '@/components/EventsInfo'
-import { ProfileCard, RenderPositionWise } from '@/app/teams/page'
+// import { ProfileCard, RenderPositionWise } from '@/app/teams/page'
+import { ProfileCard } from '@/components'
 function CommitteeByID() {
   // profile page of each committees
   return (
