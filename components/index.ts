@@ -8,6 +8,7 @@ import Update from "./Update";
 import CommitteeCard from "./CommitteeCard";
 import ProfileCard from "./ProfileCard";
 import RenderPositionWise from "./RenderPositionWise";
+import Sliders from "./Sliders";
 export {
     About,
     EventsInfo,
@@ -18,6 +19,6 @@ export {
     CommitteeCard ,
     ProfileCard ,
     RenderPositionWise ,
-
+Sliders ,
 Update
 }

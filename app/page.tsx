@@ -1,5 +1,5 @@
 // import Image from 'next/image'
-import { About, EventsInfo, Footer, Header, Nav, Update, Works } from '@/components'
+import { About, EventsInfo, Footer, Header, Nav, Sliders, Update, Works } from '@/components'
 export default function Home() {
   return (
     <main className="relative ">
@@ -9,7 +9,8 @@ export default function Home() {
 
 {/* <Nav /> */}
 <Header/>
-<Update />
+{/* <Update /> */}
+<Sliders />
 <About />
 <Works />
 <EventsInfo />

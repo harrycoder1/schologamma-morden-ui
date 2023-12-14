@@ -94,6 +94,8 @@ export const EventCard = () =>{
 }
 export default function EventsInfo() {
 const [isView ,setIsView] =useState(false)
+const [eventData ,setEventData] =useState([]) ;
+
   return (
     <div className="flex justify-center relative mt-[100px] md:mt-[170px] lg:mt-[250px] ">
 
