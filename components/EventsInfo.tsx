@@ -4,6 +4,10 @@ import '@/styles/event_info.css'
 import Image from 'next/image'
 import { LiaExpandSolid } from "react-icons/lia";
 import { IoMdClose } from "react-icons/io";
+import { IoArrowRedoOutline } from "react-icons/io5";
+import Link from 'next/link';
+import { IoIosOpen } from "react-icons/io";
+import { GoLink } from "react-icons/go";
 export const ViewEvent =({setIsView} :{setIsView:any}) =>{
    {/* height: ;
     max-width: 400px;
@@ -98,12 +102,16 @@ const [isView ,setIsView] =useState(false)
 <div className="event_info_top flex flex-row justify-center items-center">
   <div className="event_info_top_left text-[32px] lg:text-[64px] ">Engaging Events to Explore
  Opportunities</div>
-  <div className="event_info_top_right">Explore The More Events</div>
+  <div className="event_info_top_right cursor-pointer"><Link href={'/events'}>Explore The More Events</Link> </div>
 </div>
 <div className="event_info_down flex flex-col lg:flex-row justify-between  mt-[60px]">
 
-<div className="event_info_left">
+<div className="event_info_left hidden lg:block">
+  <div className="flex justify-end ">
+  <div className="relative top-[30px] left-5 white_glass text-[26px] p-[12px] rounded-full h-[50px] w-[50px] cursor-pointer  z-10 "> <IoArrowRedoOutline />
+  </div>
 
+  </div>
 {/* view card design here */}
 <ViewEvent setIsView={setIsView}  />
 {/* for view the image */}
@@ -124,7 +132,11 @@ const [isView ,setIsView] =useState(false)
 
 {/* event cards start here */}
 {[1,2,3,4,5].map(item=>(
+  <div className="relative">
  <EventCard />
+<div className="lg:hidden white_glass rounded-full p-[12px] text-[20px] absolute top-[36px]   w-[40px] h-[40px] flex justify-center items-center"><Link href={"/events/3434"}><GoLink />
+ </Link></div>
+  </div>
 ))}
 
 

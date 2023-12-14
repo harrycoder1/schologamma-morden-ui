@@ -9,12 +9,12 @@ export default function Committee() {
     <div className='flex justify-center items-center'>
   
   {/* data start her  */}
-  <div className="mt-[32px] flex flex-col lg:flex-row">
+  <div className="mt-[32px] flex flex-col justify-center items-center lg:flex-row lg:flex-wrap">
 <div className="comte_left hidden lg:block">
 <ViewEvent setIsView={setIsView}  />
 
 </div>
-<div className="comte_right mt-[20px] lg:mt-0 lg:ml-[42px] w-[90%] cmte_box  lg:w-[805px]">
+<div className="comte_right mt-[20px] lg:mt-0 lg:ml-[42px] w-[96%] cmte_box  lg:w-[805px]">
     <div className="cmte_blur"></div>
 <div className="search_bar mt-[30px] flex flex-row justify-center flex-wrap lg:flex-nowrap ">
 <input  placeholder='Enter the event name' className='search_input lg:w-[340px]  md:w-auto w-[200px] focus:outline-none focus-within:outline-none  focus-visible:outline-none '/>
