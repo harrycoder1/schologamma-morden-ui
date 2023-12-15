@@ -1,10 +1,13 @@
-import React from 'react'
+import React, { useState } from 'react'
 import '@/styles/committeebyid.css'
 import Image from 'next/image'
 import { EventCard } from '@/components/EventsInfo'
 // import { ProfileCard, RenderPositionWise } from '@/app/teams/page'
 import { ProfileCard } from '@/components'
+import { event_data_type } from '@/types'
 function CommitteeByID() {
+const [eventData ,setEventData] = useState<any>({})
+
   // profile page of each committees
   return (
     <div>
@@ -28,7 +31,7 @@ function CommitteeByID() {
 
             <div className="eve_cont_cmte flex flex-row   h-[350px] overflow-x-scroll">
               {[1,2,34,4,5,3,3,3,343,3,32,3,4,3].map(item=>(
-                <EventCard />
+                <EventCard item={eventData}/>
               ))}
             </div>
           </div>

@@ -1,5 +1,5 @@
 "use client";
-import React, { useState } from 'react'
+import React, { useEffect, useState ,useContext} from 'react'
 import '@/styles/event_info.css'
 import Image from 'next/image'
 import { LiaExpandSolid } from "react-icons/lia";
@@ -8,6 +8,10 @@ import { IoArrowRedoOutline } from "react-icons/io5";
 import Link from 'next/link';
 import { IoIosOpen } from "react-icons/io";
 import { GoLink } from "react-icons/go";
+import { event_data_type } from '@/types';
+import { FetchURL } from '@/utils/url';
+import { sortEventsByUpcoming } from '@/utils/sortEvent';
+import DataContext from '@/context/data/DataContext'
 export const ViewEvent =({setIsView} :{setIsView:any}) =>{
    {/* height: ;
     max-width: 400px;
@@ -76,13 +80,15 @@ export const ViewEvent =({setIsView} :{setIsView:any}) =>{
   )
 }
 
-export const EventCard = () =>{
+export const EventCard = ({item}:{item:event_data_type}) =>{
+
+
   return(
     <div className="event_card_cont  " >
     {/* event card */}
       <div className="event_info_card rounded-sm m-[8px]">
-        <Image src={"/eventcard.jpg"} width={700} height={1020} alt='name' className='w-[100%] h-[100%] rounded-sm z-[-18]' />
-    <div className="event_blue_glass absolute bottom-[20px] left-0 right-0 ">TechBuzz 2.O</div>
+        <Image src={`${item?.poster}`} width={300} height={420} alt='name' className='w-[100%] h-[100%] rounded-sm z-[-18]' />
+    <div className="event_blue_glass absolute bottom-[20px] left-0 right-0 ">{item?.name}</div>
     <span className="absolute rounded-full  top-[-3px] bg-red-600 shadow-md right-[-3px] text-[11px] text-white px-[4px] py-[1px] ">upcoming</span>
       </div>
      
@@ -94,7 +100,28 @@ export const EventCard = () =>{
 }
 export default function EventsInfo() {
 const [isView ,setIsView] =useState(false)
-const [eventData ,setEventData] =useState([]) ;
+const [eventData ,setEventData] =useState<event_data_type[]>([]) ;
+
+const dd = useContext(DataContext) ;
+console.log(dd)
+const [sortEventData , setSortEventData] = useState<event_data_type[]>([])
+// create the useEffect for rend3er the data at the run time
+useEffect(() => {
+  const fetData =async ()=>{
+    const res = await fetch(`${FetchURL}/api/events`)
+    const data = await res.json()
+console.log(data)
+   data.ok && eventData.length===0 && setEventData(data.data)
+   const sort = sortEventsByUpcoming(data.data)
+   console.log("sorted Data are :")
+
+   console.log(sort)
+   data.ok && eventData.length===0 && setSortEventData(sort)
+  //  console.log(sortEventData)
+  }
+  fetData()
+}, []) ;
+
 
   return (
     <div className="flex justify-center relative mt-[100px] md:mt-[170px] lg:mt-[250px] ">
@@ -103,7 +130,7 @@ const [eventData ,setEventData] =useState([]) ;
     <div className=' w-[340px] md:w-auto lg:w-[1172px]'>
 <div className="event_info_top flex flex-row justify-center items-center">
   <div className="event_info_top_left text-[32px] lg:text-[64px] ">Engaging Events to Explore
- Opportunities</div>
+ Opportunities </div>
   <div className="event_info_top_right cursor-pointer"><Link href={'/events'}>Explore The More Events</Link> </div>
 </div>
 <div className="event_info_down flex flex-col lg:flex-row justify-between  mt-[60px]">
@@ -133,10 +160,13 @@ const [eventData ,setEventData] =useState([]) ;
 <div className="event_info_right mt-[50] flex h-[410px] lg:h-[790px] w-[90%]  md:w-[600px] lg:flex-wrap overflow-x-scroll lg:overflow-y-scroll   ">
 
 {/* event cards start here */}
-{[1,2,3,4,5].map(item=>(
+{eventData.length==0 && <div className="text-[42px] text-white font-bold">Loading</div> }
+{
+
+sortEventData?.map(item=>(
   <div className="relative">
- <EventCard />
-<div className="lg:hidden white_glass rounded-full p-[12px] text-[20px] absolute top-[36px]   w-[40px] h-[40px] flex justify-center items-center"><Link href={"/events/3434"}><GoLink />
+ <EventCard item={item} />
+<div className="lg:hidden white_glass rounded-full p-[12px] text-[20px] absolute top-[36px]   w-[40px] h-[40px] flex justify-center items-center"><Link href={`/events/${item?._id }`} ><GoLink />
  </Link></div>
   </div>
 ))}

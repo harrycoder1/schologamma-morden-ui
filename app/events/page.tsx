@@ -5,6 +5,8 @@ import React, { useState } from 'react'
 import '@/styles/events.css'
 export default function Committee() {
     const [isView ,setIsView] = useState(false)
+const [eventData ,setEventData] =useState<any>({})
+
   return (
     <div className='flex justify-center items-center'>
   
@@ -58,7 +60,7 @@ export default function Committee() {
     
   
 {[1,2,3,4,5,6,77,4,3,54,5,6,67,4,4,].map(item=>(
-<EventCard /> 
+<EventCard  item={eventData}/> 
 
 ))}
 
