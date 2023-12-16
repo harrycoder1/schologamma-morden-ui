@@ -1,6 +1,6 @@
 import { event_data_type } from "@/types";
 
-export function sortEventsByUpcoming(events: event_data_type[]): event_data_type[] {
+export function sortEventsByUpcomingDate(events: event_data_type[]): event_data_type[] {
     const currentDate = new Date();
     return events.filter(event => {
         const eventStartDate = new Date(event.sdate);

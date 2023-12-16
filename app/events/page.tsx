@@ -7,7 +7,7 @@ import { committee_data_type, event_data_type } from '@/types'
 import { sortEventsByUpcoming } from '@/utils/sortEvent'
 import Link from 'next/link'
 import { GoLink } from 'react-icons/go'
-import { getEventsByMedium, getEventsByMedium2, getEventsByOrganizer, getEventsByType, getTodayEvents, getUniqueEventTypesArray, searchEvents } from '@/utils/searchFunc'
+import { getEventsByMedium, getEventsByMedium2, getEventsByOrganizer, getEventsByType, getTodayEvents, getUniqueEventTypesArray, searchEvents, sortEventsByUpcomingDate } from '@/utils/searchFunc'
 export default function Events() {
     const [isView ,setIsView] = useState(false)
 // const [eventData ,setEventData] =useState<any>({})
@@ -57,8 +57,8 @@ setSearchText(e.target.value)
 
 
 const sortObj = [
-  {name:"ToDay",func:getTodayEvents},
-  {name:"Upcomming", func:sortEventsByUpcoming},
+  {name:"ToDay", func:getTodayEvents},
+  {name:"Upcomming", func:sortEventsByUpcomingDate},
   {name:"Online", func:getEventsByMedium2},
   {name:"Offline", func:getEventsByMedium},
 ]
