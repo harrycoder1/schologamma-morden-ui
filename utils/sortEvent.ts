@@ -107,3 +107,16 @@ export function sortEventsByUpcoming(events: Event[]): Event[] {
         }
     });
 }
+
+
+
+// for get label from the other array 
+export function getValueFromOtherByLabel(event: event_data_type, labelToFind: string): string | undefined {
+    if(event?.other && event?.other?.length >0 ){
+        const foundObject = event.other.find((obj) =>
+         obj.label === labelToFind);
+        return foundObject?.value || undefined;
+
+    }
+  return undefined
+  }

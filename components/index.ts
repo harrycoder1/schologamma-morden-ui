@@ -10,6 +10,7 @@ import ProfileCard from "./ProfileCard";
 import RenderPositionWise from "./RenderPositionWise";
 import Sliders from "./Sliders";
 import HeadCoHeadMemberFetch from "./HeadCoHeadMemberFetch";
+import Timer from "./Timer";
 export {
     About,
     EventsInfo,
@@ -22,6 +23,7 @@ export {
     RenderPositionWise ,
 Sliders ,
 Update,
-HeadCoHeadMemberFetch
+HeadCoHeadMemberFetch ,
+Timer
 
 }

@@ -36,9 +36,9 @@ export function getTimeAgoFormatted(dateTime: Date): string {
   }
 }
 
-
+export const currentDate = new Date()
 export function getEventStatus(startDate: Date, endDate: Date): string {
-  const currentDate = new Date();
+  const currentDate:Date = new Date();
 
   if (currentDate < startDate) {
     return "Upcoming"; // Event is yet to start

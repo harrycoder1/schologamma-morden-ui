@@ -35,18 +35,31 @@ sdate:string ,
 // "2023-09-30T18:27"
 edate:string ,
 
-venue :string ,
+venue ?:string ,
 medium ?:string ,
 updatedAt ?:string ,
 createdAt ?:string ,
 
 poster :string ,
 description :string ,
+registrationFormLink ?: string,
+eventsocialLinks?:string ,
 joinLink:string ,
-    quizeQuestion: any[],
-    other:any[],
+    quizeQuestion ?: {
+        queMsg: string;
+        answers: {
+          value: string;
+          correct: boolean;
+        }[];
+      }[];
+    other?:{
+        label: string;
+        value: string;
+        _id:string ;
+      }[],
 __v?:number|undefined,
 } ;
+
 
 export type committee_data_type = {
     
@@ -82,6 +95,11 @@ export type data_teams_object_type ={
     id:string ,
     year:number ,
     data:team_data_type[]
+}
+
+export type timer_reamaning_type = {
+    name:string ,
+    value:number
 }
 
 export interface TimeDifference {

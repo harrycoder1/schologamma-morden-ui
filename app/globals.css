@@ -4,12 +4,12 @@
 
 body{
   background: black;
-  height: 5571px;
+  height: auto;
   width: 100vw;
   overflow-x: hidden;
   color: #ffff;
   /* position: relative; */
-
+overflow-y: scroll;
 }
 .blur-slide-h{
   /* absolute top-0 right-0 bottom-0 left-0 z-[-50] */
@@ -242,4 +242,13 @@ background-clip: text;
   /* font-weight: 800; */
   line-height: 75px;
   letter-spacing: -1.28px;
+}
+
+.black_glass{
+  /* From https://css.glass */
+background: rgba(2, 2, 2, 0.24);
+/* border-radius: 16px; */
+box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+backdrop-filter: blur(14.7px);
+-webkit-backdrop-filter: blur(14.7px);
 }

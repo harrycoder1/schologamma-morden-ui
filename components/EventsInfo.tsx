@@ -10,13 +10,16 @@ import { IoIosOpen } from "react-icons/io";
 import { GoLink } from "react-icons/go";
 import { TimeDifference, committee_data_type, event_data_type } from '@/types';
 import { FetchURL } from '@/utils/url';
-import { sortEventsByUpcoming } from '@/utils/sortEvent';
+import { getValueFromOtherByLabel, sortEventsByUpcoming } from '@/utils/sortEvent';
 import DataContext from '@/context/data/DataContext'
 import { getObjectByID } from '@/utils/getIdByname';
 import { getDayFromDateTime, stringToNumDate } from '@/utils/date';
-import { getEventStatus, getTimeAgoFormatted } from '@/utils/eventFunc';
+import { currentDate, getEventStatus, getTimeAgoFormatted } from '@/utils/eventFunc';
 import { committeeByID } from '@/utils/committee';
-
+import { Timer } from '.';
+import { isValidURL } from '@/utils/verifyLink';
+import { IoLocationSharp } from "react-icons/io5";
+import { SlLayers } from "react-icons/sl";
 
 export const ViewEvent =({setIsView ,eventData} :{setIsView:any ,eventData:event_data_type}) =>{
    {/* height: ;
@@ -32,6 +35,25 @@ export const ViewEvent =({setIsView ,eventData} :{setIsView:any ,eventData:event
     // setAgo(str)
   //  } 
   const committeProfileData =eventData &&  committeeByID(eventData.organizer)
+
+
+  // for timer :=========Data==============>
+  const joinLink = getValueFromOtherByLabel(eventData , "joinLink")
+  const syllabusLink = getValueFromOtherByLabel(eventData, "syllabusLink");
+  const resultRealeseDate = getValueFromOtherByLabel(eventData , "resultRealeseDate");
+  const resultLink = getValueFromOtherByLabel(eventData , "resultLink")
+  const venue = getValueFromOtherByLabel(eventData , "venue")
+  const socialLink = eventData?.eventsocialLinks
+  const registrationLink = eventData?.registrationFormLink
+  const isUpcomming:Boolean = stringToNumDate(currentDate.toString() )  < stringToNumDate(eventData?.sdate) //event 
+  
+  const isResultComming:Boolean =((resultRealeseDate !== undefined ) && (stringToNumDate( resultRealeseDate) > stringToNumDate(eventData.edate)) && (stringToNumDate( resultRealeseDate) >  stringToNumDate(currentDate.toString() )))
+
+  const isResultOut :Boolean =((resultRealeseDate !== undefined ) && (stringToNumDate( resultRealeseDate) > stringToNumDate(eventData.edate)) && (stringToNumDate( resultRealeseDate) < stringToNumDate(currentDate.toString() )))
+
+  // const isResultComming =true
+  
+  // const isUpcomming:Boolean = stringToNumDate(currentDate.toString() )  < stringToNumDate(eventData?.sdate) //event close
   return (
     <div className="flex justify-center items-center">
 
@@ -57,7 +79,7 @@ export const ViewEvent =({setIsView ,eventData} :{setIsView:any ,eventData:event
     <Image src={`${committeProfileData?.photo ? committeProfileData.photo :"" }`} width={50} height={50} className='w-[45px] h-[45px] rounded-full shadow-md' alt='name'/>
   </div>
   <div className="event_personal_detail">
-    <div className="eve_name ">{committeProfileData?.name}</div>
+    <div className="eve_name ">{committeProfileData?.name} </div>
     <div className="eve_time">{
     // for time go show
    eventData?.updatedAt && getTimeAgoFormatted( new Date( stringToNumDate(eventData?.updatedAt ))) } </div>
@@ -67,11 +89,39 @@ export const ViewEvent =({setIsView ,eventData} :{setIsView:any ,eventData:event
   }
 
 <div className="p-[18px]">
+  
 <div className="e_title">{eventData?.name}</div>
+
+<div className="location_event flex justify-end">
+  {/* For adding the venue */}
+   {eventData?.medium && eventData.medium ==="offline event"&&venue && 
+<> <div className="flex justify-center items-center">
+  <div className="text-[20px] text-white mr-[4px]"> <IoLocationSharp /> </div>
+  <div className=""> {venue} </div>
+  </div></>
+  }
+{/* for online platform */}
+{eventData?.medium && (eventData.medium === "online event" || eventData.medium=== "quize competition") && 
+<> <div className="flex justify-center items-center">
+  <div className="text-[20px] text-white mr-[4px]"> <SlLayers /> </div>
+  <div className=""> Online </div>
+  </div></>
+  }
+
+  </div>
 <div className="e_descrip">{eventData?.description}</div>
+{socialLink!==undefined && isValidURL(socialLink) &&
+  <div className="bg-orange-500 font-semibold text-[14px] my-[10px]  hover: border-orange-500 " ><Link href={socialLink}> Explore...</Link> </div>
+
+}
+{/* for  syllabus btn */}
+{syllabusLink && isValidURL(syllabusLink) && 
+<div className='syllabus_cont flex flex-col justify-center items-center'>
+<div className="text-gray-600 text-[12px]">Dowload Syllabus for quize preparation</div>
+<button className='px-[10px] py-[4px] rounded-md bg-sky-600 hover:bg-sky-800 text-white text-[13px] '>Dowload</button>
+</div>}
 
 {/* venue */}
-<div className="event_venue">{eventData?.medium && eventData.medium}</div>
 
 {/* start Date and end Date */}
 {eventData?.sdate && eventData?.edate &&
@@ -99,11 +149,60 @@ export const ViewEvent =({setIsView ,eventData} :{setIsView:any ,eventData:event
             </div>
 </div>
 }
+{/* For resitraion Link */}
+{
+  registrationLink && isValidURL(registrationLink) && isUpcomming && 
+  <div className="flex flex-col justify-center items-center mt-[14px]"> 
+  <div className="text-red-100 text-[14px] text-center"></div>
+ <button className='bg-red-400 mb-[8px] mr-[8px] border-2  border-red-600 cursor-pointer text-[12px] hover:bg-red-700 text-white  px-[14px] py-[8px] rounded-md w-fit'><Link href={registrationLink}>Register Now</Link> </button>
+
+  </div>
+}
+
 
 {/*  this is our timer or join link or result timer or result link
  */}
-<div className=" mt-[4px] eve_timer w-[300px] h-[80px] bg-gray-600 rounded-md ">
-  this is our timer or join link or result timer or result link
+<div className=" mt-[4px] eve_timer  h-[80px] flex flex-col justify-center items-center  ">
+{/* Add timer here */}
+{/* {if(currentDate <)} */}
+
+
+{/* ====================== for countdown section */}
+{isUpcomming &&
+<div className='flex flex-col justify-center items-center'> 
+  <div className="text-gray-300 text-[14px] text-center">Event Start in</div>
+<Timer startTime={eventData?.sdate} /> 
+</div> }
+
+{/* for result */}
+{isResultComming && isUpcomming==false && (resultRealeseDate!==undefined) &&
+  <div className='flex flex-col justify-center items-center'> 
+  <div className="text-gray-300 text-[14px] text-center">Result will be Declare  in {resultRealeseDate}</div>
+<Timer startTime={resultRealeseDate.toString()} />
+</div>
+ }
+
+{isResultOut && resultLink!==undefined && isValidURL(resultLink) && !(stringToNumDate(currentDate.toString()) >= stringToNumDate(eventData.sdate) && stringToNumDate(currentDate.toString())< stringToNumDate(eventData?.edate))&&
+  <div className='flex flex-col justify-center items-center'> 
+  <div className="text-green-600 text-[14px] text-center">Result has been Declared at :{resultRealeseDate}</div>
+<button className='bg-green-600 mb-[8px] mr-[8px] border-2  border-green-400 cursor-pointer text-[12px] hover:bg-green-700 text-white  px-[14px] py-[8px] rounded-md w-fit'><Link href={resultLink}>Dowload</Link> </button>
+  
+</div>
+ }
+
+{/* for join link */}
+{joinLink && (stringToNumDate(currentDate.toString()) >= stringToNumDate(eventData.sdate) && stringToNumDate(currentDate.toString())< stringToNumDate(eventData?.edate)) && isValidURL(joinLink) &&
+<button className='bg-none mb-[8px] mr-[8px] border-2 border-green-400 cursor-pointer text-[12px] hover:bg-green-500 text-white  px-[14px] py-[8px] rounded-md w-fit'><Link href={joinLink}>Join now</Link> </button>
+}
+
+{/*  for say event has been close*/}
+{eventData?.edate && (stringToNumDate(currentDate.toString()) >stringToNumDate(eventData?.edate)) && resultLink===undefined &&resultRealeseDate ===undefined && 
+  <div className="text-red-600 text-[14px] text-center">Event has been ended !</div>
+
+}
+{/* for result date */}
+{/* {eventData?} */}
+
 </div>
 <div className="event_btn">
   {/* <button className='eve_read_btn'>Read More...</button> */}
@@ -113,6 +212,9 @@ export const ViewEvent =({setIsView ,eventData} :{setIsView:any ,eventData:event
   <div className="e_media">
 
   </div>
+
+  {/* for margin */}
+  <div className="mb-[24px]"></div>
 </div>
 </div>
   )
