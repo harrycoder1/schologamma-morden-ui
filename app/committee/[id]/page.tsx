@@ -1,13 +1,71 @@
-import React, { useState } from 'react'
+"use client"
+import React, { useState ,useContext ,useEffect } from 'react'
 import '@/styles/committeebyid.css'
 import Image from 'next/image'
 import { EventCard } from '@/components/EventsInfo'
 // import { ProfileCard, RenderPositionWise } from '@/app/teams/page'
-import { ProfileCard } from '@/components'
-import { event_data_type } from '@/types'
-function CommitteeByID() {
-const [eventData ,setEventData] = useState<any>({})
+import { HeadCoHeadMemberFetch, ProfileCard } from '@/components'
+import { committee_data_type, event_data_type, team_data_type } from '@/types'
+import DataContext from '@/context/data/DataContext'
+import { committeeByID } from '@/utils/committee'
+import { eventSortByCommittee } from '@/utils/eventFunc'
+import { sortAndSplitByPosition, teamsSortByCommittee } from '@/utils/teamFunc'
+function CommitteeByID({params}:{params:any}) {
+// const [eventData ,setEventData] = useState<any>({})
+//FOR FETCH THE DATA FROM THE context api 
+// for committee data
 
+
+const dd = useContext(DataContext) ;
+  console.log(dd)
+  const [committteeProfile , setCommitteeProfile] = useState<committee_data_type |{}>({
+    _id: "",
+    name: "",
+    email: "",
+    description: "",
+    photo:""
+  })
+const [eventByCommitttee , setEventByCommittee] =useState<event_data_type[]>([])
+const[teamsByCommittee , setTeamsByCommittee] =useState< { [key: string]: team_data_type[] }>({})
+// const [cmteProfile ,setCmteProfile] =useState({})
+      // dd?.committeeP.length !== 0 &&   setCommitteeProfile()
+    
+      // useEffect(() => {
+      //   if(cmteprofile?.name !== ""){
+      //   const cmteprofile = committeeByID(params.id)
+
+      //     setCommitteeProfile(committeeByID(params.id))
+      //         }
+      // }, [])
+
+      const committeProfileData =params.id &&  committeeByID(params.id)
+
+     
+      
+// for events data
+  useEffect(() => {
+    if( dd?.eventDataP.length!==0){
+      
+      const dataEvent = eventSortByCommittee(params.id ,dd.eventDataP)
+      dd?.eventDataP.length !== 0 &&   setEventByCommittee( dataEvent)
+    }
+  
+  }, [dd?.eventDataP.length])
+// 
+// for teams data
+useEffect(() => {
+  if( dd?.teamsP.length!==0){
+    const dataTeams = teamsSortByCommittee(dd.teamsP[0].data , params.id)
+    const sortTeams = sortAndSplitByPosition(dataTeams)
+    dd?.teamsP.length !== 0 &&   setTeamsByCommittee(sortTeams)
+  }
+
+}, [dd?.teamsP.length])
+
+
+
+
+if(committeProfileData?.name == "" ) {return <><div className="text--[32px] lg:text-[44px]">404|Not Found</div></>}
   // profile page of each committees
   return (
     <div>
@@ -15,11 +73,11 @@ const [eventData ,setEventData] = useState<any>({})
 
         <div className="left_cmte w-[95%] h-[1000px] lg:w-[384px] left_box  flex flex-col  items-center p-[24px]">
         <div className="img_box relative rounded-full w-[180px] h-[180px] bg-gray-600">
-          {/* <Image src="/" width={200} height={200}  alt="name" className="w-[100%] h-[100%]"/> */}
+         {committeProfileData?.photo && <Image src={`${committeProfileData?.photo}`}width={200} height={200}  alt="name" className="w-[100%] h-[100%] rounded-full"/>}
         </div>
-        <div className="cmte_name text-[24px] font-bold text-cyan-500  my-[20px]">TechSpot Committee</div>
+        <div className="cmte_name text-[24px] font-bold text-cyan-500  my-[20px]">{ committeProfileData?.name}</div>
         <div className="h-description">
-        ●“Technology is the catalyst for transformative change, sparking innovation, and illuminating pathways to a brighter future”. Technical committee ensures the quality and relevance of technical education and research initiatives. It facilitates an environment that encourages experimentation, creativity, and continuous learning among department’s faculty and students. ●The primary role of the technical committee is to foster innovation and research within the department. In the heart of the Technical Committee, we fuel a culture of curiosity, encouraging minds to question, explore, and pioneer. By nurturing a collaborative environment where ideas flow freely, we drive groundbreaking research, crafting solutions that solve real-world challenges. ●Criteria for selection of the members are exceptional technical expertise, innovative thinking, and problem-solving skills. Individuals selected for this committee exhibit a deep understanding of the department’s technical requirements, demonstrating their proficiency in various technical domains.
+        {committeProfileData?.description}
         </div>
 
         </div>
@@ -30,8 +88,9 @@ const [eventData ,setEventData] = useState<any>({})
             <div className="text-[28px] lg:text-[36px] font-extrabold text-white shadow-md">Our Events Are :</div>
 
             <div className="eve_cont_cmte flex flex-row   h-[350px] overflow-x-scroll">
-              {[1,2,34,4,5,3,3,3,343,3,32,3,4,3].map(item=>(
-                <EventCard item={eventData}/>
+              {/* for committies events fetch */}
+              {eventByCommitttee?.map(item=>(
+                <EventCard item={item}/>
               ))}
             </div>
           </div>
@@ -45,18 +104,8 @@ const [eventData ,setEventData] = useState<any>({})
 </div> */}
 {/* <RenderPositionWise /> */}
 <div className="profile_cont_cmte overflow-y-scroll h-[470px]">
-{["Head" ,"Co-Heads" ,"Members"].map(item=>(
-  <div className="  ">
-<div className="text-[20px] font-bold  text-white">{item}</div>
-<div className=" flex flex-row flex-wrap justify-center items-center ">
-{[1,2,3,4].map(item1 =>(
-  <ProfileCard />
-))}
+<HeadCoHeadMemberFetch  sortedTeams={teamsByCommittee}/>
 </div>
-
-
-  </div>
-))}</div>
             {/* <div className="eve_cont_cmte flex flex-row   h-[350px] overflow-x-scroll">
            
               {[1,2,34,4,5,3,3,3,343,3,32,3,4,3].map(item=>(

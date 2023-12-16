@@ -5,24 +5,28 @@ import { FaFacebookF } from "react-icons/fa";
 import { FiInstagram } from "react-icons/fi";
 import Link from 'next/link';
 import Image from 'next/image'
+import { team_data_type } from '@/types';
+import { committeeByID } from '@/utils/committee';
 
-export default function ProfileCard() {
+export default function ProfileCard({item}:{item:team_data_type}) {
+  const committee = committeeByID(item?.type)
   return (
     <div className="user_card_box rounded-md m-[12px] w-[300px] flex flex-col justify-center items-center p-[40px] ">
     <div className="user_blur"></div>
     <div className="img_box relative w-[150px] h-[150px] rounded-full bg-gray-600">
-    {/* <Image src={'/'} width={200} height={200} alt='name' className='w-[100%] h-[100%]'/> */}
+  {item?.photoUrl &&  <Image src={item?.photoUrl} width={200} height={200} alt='name' className='w-[100%] rounded-full h-[100%]'/>}
     
     </div>
     <div className="user_detail flex flex-col justify-center items-center mt-[24px] text-[18px]">
-      <div className="text-cyan-300 font-extrabold tex-[24px] ">TechSpot Committee</div>
-      <div className="text-slate-400 font-bold">Head</div>
+      <div className="text-cyan-300 font-extrabold tex-[24px]  text-center " >{committee?.name}</div>
+      <div className="text-slate-400 font-bold text-center">{item?.position}</div>
     
-      <div className="text-[16px]">Name: <span className='font-extrabold'> Harish Hedau</span></div>
-      <div className="social_media_cot flex flex-row ">
-      <div className='social_media_btn hover:text-blue-400'><Link href=""><FaLinkedinIn /></Link></div> 
-       <div className='social_media_btn hover:text-blue-700'> <Link href=""><FaFacebookF /></Link> </div> 
-        <div className='social_media_btn hover:text-pink-500'><Link href=""><FiInstagram/></Link></div>
+      <div className="text-[16px] flex flex-col justify-center items-center"><span>Name:</span> <span className='font-extrabold text-center'> {item?.name}</span></div>
+      <div className="social_media_cot flex flex-row justify-center items-center">
+{/* for share social links */}
+     {item?.linkedinUrl && item.linkedinUrl.startsWith("https://") && <div className='social_media_btn hover:text-blue-400'><Link href={item.linkedinUrl}><FaLinkedinIn /></Link></div> }
+     {item?.facebookUrl && item.linkedinUrl.startsWith("https://") && <div className='social_media_btn hover:text-blue-700'> <Link href={item.facebookUrl}><FaFacebookF /></Link> </div> }
+        {item?.instragramUrl && item.linkedinUrl.startsWith("https://") && <div className='social_media_btn hover:text-pink-500'><Link href={item.instragramUrl}><FiInstagram/></Link></div>}
       
     
       

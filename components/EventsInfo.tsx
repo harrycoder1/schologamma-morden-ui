@@ -8,21 +8,37 @@ import { IoArrowRedoOutline } from "react-icons/io5";
 import Link from 'next/link';
 import { IoIosOpen } from "react-icons/io";
 import { GoLink } from "react-icons/go";
-import { event_data_type } from '@/types';
+import { TimeDifference, committee_data_type, event_data_type } from '@/types';
 import { FetchURL } from '@/utils/url';
 import { sortEventsByUpcoming } from '@/utils/sortEvent';
 import DataContext from '@/context/data/DataContext'
-export const ViewEvent =({setIsView} :{setIsView:any}) =>{
+import { getObjectByID } from '@/utils/getIdByname';
+import { getDayFromDateTime, stringToNumDate } from '@/utils/date';
+import { getEventStatus, getTimeAgoFormatted } from '@/utils/eventFunc';
+import { committeeByID } from '@/utils/committee';
+
+
+export const ViewEvent =({setIsView ,eventData} :{setIsView:any ,eventData:event_data_type}) =>{
    {/* height: ;
     max-width: 400px;
     width: auto; */}
+    const sdateObj = getDayFromDateTime(stringToNumDate(eventData?.sdate));
+  const edateObj = getDayFromDateTime(stringToNumDate(eventData?.edate));
+
+  // const [ago , setAgo] = useState<string>("")
+  // if( eventData?.updatedAt ){
+    // const timeAgo = getDayFromDateTime(stringToNumDate(eventData?.updatedAt))
+    // const str = timeAgo.minutes +"min , "+timeAgo.hours+"hr, "+timeAgo.dayOfWeek+"weeks, "+timeAgo.month+"mon "+ timeAgo.year +"year";
+    // setAgo(str)
+  //  } 
+  const committeProfileData =eventData &&  committeeByID(eventData.organizer)
   return (
     <div className="flex justify-center items-center">
 
   
     <div className="e_view_card w-[90%] lg:w-[400px] ">
   <div className="e_img">
-<Image src={"/eventcard.jpg"} width={400} height={500} alt='photo' className='h-[100%] w-[100%] rounded-sm'/>
+<Image src={eventData?.poster} width={400} height={500} alt='photo' className='h-[100%] w-[100%] rounded-sm'/>
 <div className="e_img_view ">
 
   <button className='text-[24px] bg-black opacity-50 ' onClick={()=>(setIsView(true))}><LiaExpandSolid /></button>
@@ -30,38 +46,60 @@ export const ViewEvent =({setIsView} :{setIsView:any}) =>{
   </div>
 
   {/* content start her */}
+
   <div className="e_content">
-<div className="e_profile flex flex-row p-[18px]">
+  {committeProfileData &&
+
+  <Link href={`/committee/${committeProfileData?._id}`} className=''>
+
+<div className="e_profile flex flex-row p-[18px] hover:text-blue-500" >
   <div className="eve_photo pr-[24px]">
-    <Image src={'/eventcard.jpg'} width={50} height={50} className='w-[45px] h-[45px] rounded-full shadow-md' alt='name'/>
+    <Image src={`${committeProfileData?.photo ? committeProfileData.photo :"" }`} width={50} height={50} className='w-[45px] h-[45px] rounded-full shadow-md' alt='name'/>
   </div>
   <div className="event_personal_detail">
-    <div className="eve_name ">TechSPot Committee</div>
-    <div className="eve_time">2 day ,3hr , 45min ago </div>
+    <div className="eve_name ">{committeProfileData?.name}</div>
+    <div className="eve_time">{
+    // for time go show
+   eventData?.updatedAt && getTimeAgoFormatted( new Date( stringToNumDate(eventData?.updatedAt ))) } </div>
   </div>
 </div>
+</Link>
+  }
+
 <div className="p-[18px]">
-<div className="e_title">TechBuzz 2.O</div>
-<div className="e_descrip">Lorem ipsum dolor sit amet consectetur adipisicing jkfsdjksdfjkl sdfjkklsdkfljks oiuiodfn sdjfd f slkmfsf sfsdf sdf ew ref elit. Fugit mollitia iusto praesentiu.</div>
+<div className="e_title">{eventData?.name}</div>
+<div className="e_descrip">{eventData?.description}</div>
 
 {/* venue */}
-<div className="event_venue">Onnline</div>
+<div className="event_venue">{eventData?.medium && eventData.medium}</div>
 
 {/* start Date and end Date */}
-<div className="date_cont">
-  <div className="d_start flex justify-center items-center flex-col">
-  <span> 2 sep ,2022
-    </span> 
-    {/* <span>2022</span>  */}
-    <span>2:30 PM</span>
-  </div>
-  <div className="d_end flex justify-center items-center flex-col">
-  <span> 2 sep ,2022
-    </span> 
-    {/* <span>2022</span>  */}
-    <span>2:30 PM</span>
-  </div>
+{eventData?.sdate && eventData?.edate &&
+  <div className="date_cont">
+  {/* <div className="d_start flex justify-center items-center flex-col"> */}
+  <div className="flex flex-col justify-center rounded-3xl items-center  d_start p-2 mr-2">
+              <span className="text-[10px] font-semibold">Sart:</span>
+              <span className="font-extrabold text-sm">
+                {sdateObj.day + " " + sdateObj.monthName + " " + sdateObj.year}
+              </span>
+              <span className="font-extrabold text-sm">
+                {sdateObj.hours + ":" + sdateObj.minutes + " " + sdateObj.ampm}
+              </span>
+            </div>
+
+  {/* </div> */}
+  <div className="flex flex-col justify-center d_end rounded-3xl items-center  shadow-xl p-2 ml-2">
+              <span className="text-[10px] font-semibold">End:</span>
+              <span className="font-extrabold text-sm">
+                {edateObj.day + " " + edateObj.monthName + " " + edateObj.year}
+              </span>
+              <span className="font-extrabold text-sm">
+                {edateObj.hours + ":" + edateObj.minutes + " " + edateObj.ampm}
+              </span>
+            </div>
 </div>
+}
+
 {/*  this is our timer or join link or result timer or result link
  */}
 <div className=" mt-[4px] eve_timer w-[300px] h-[80px] bg-gray-600 rounded-md ">
@@ -80,18 +118,18 @@ export const ViewEvent =({setIsView} :{setIsView:any}) =>{
   )
 }
 
-export const EventCard = ({item}:{item:event_data_type}) =>{
+export const EventCard = ({item  }:{item:event_data_type }) =>{
 
 
   return(
     <div className="event_card_cont  " >
-    {/* event card */}
-      <div className="event_info_card rounded-sm m-[8px]">
+    
+      <div className="event_info_card rounded-sm m-[8px] " >
         <Image src={`${item?.poster}`} width={300} height={420} alt='name' className='w-[100%] h-[100%] rounded-sm z-[-18]' />
     <div className="event_blue_glass absolute bottom-[20px] left-0 right-0 ">{item?.name}</div>
-    <span className="absolute rounded-full  top-[-3px] bg-red-600 shadow-md right-[-3px] text-[11px] text-white px-[4px] py-[1px] ">upcoming</span>
+    <span className="absolute rounded-full  top-[-3px] bg-red-600 shadow-md right-[-3px] text-[11px] text-white px-[4px] py-[1px] ">{item?.sdate && getEventStatus( new Date(item?.sdate) , new Date (item?.edate))}</span>
       </div>
-     
+     {/* Ima here */}
     
     
       
@@ -100,27 +138,24 @@ export const EventCard = ({item}:{item:event_data_type}) =>{
 }
 export default function EventsInfo() {
 const [isView ,setIsView] =useState(false)
-const [eventData ,setEventData] =useState<event_data_type[]>([]) ;
+// const [eventData ,setEventData] =useState<event_data_type[]>([]) ;
 
 const dd = useContext(DataContext) ;
 console.log(dd)
 const [sortEventData , setSortEventData] = useState<event_data_type[]>([])
-// create the useEffect for rend3er the data at the run time
 useEffect(() => {
-  const fetData =async ()=>{
-    const res = await fetch(`${FetchURL}/api/events`)
-    const data = await res.json()
-console.log(data)
-   data.ok && eventData.length===0 && setEventData(data.data)
-   const sort = sortEventsByUpcoming(data.data)
-   console.log("sorted Data are :")
-
-   console.log(sort)
-   data.ok && eventData.length===0 && setSortEventData(sort)
-  //  console.log(sortEventData)
+  if( dd?.eventDataP.length!==0){
+    const sort = sortEventsByUpcoming(dd?.eventDataP)
+    console.log("this is my sorted array is :")
+    console.log(sort)
+    dd?.eventDataP.length !== 0 &&   setSortEventData(sort)
   }
-  fetData()
-}, []) ;
+
+}, [dd?.eventDataP.length])
+
+const [select ,setSelect] =useState<number>(0)
+
+
 
 
   return (
@@ -137,19 +172,19 @@ console.log(data)
 
 <div className="event_info_left hidden lg:block">
   <div className="flex justify-end ">
-  <div className="relative top-[30px] left-5 white_glass text-[26px] p-[12px] rounded-full h-[50px] w-[50px] cursor-pointer  z-10 "> <IoArrowRedoOutline />
+  <div className="relative top-[30px] left-5 white_glass text-[26px] p-[12px] rounded-full h-[50px] w-[50px] cursor-pointer  z-10 "><Link href={`/events/${sortEventData[select]?._id}`}> <IoArrowRedoOutline /></Link>
   </div>
 
   </div>
 {/* view card design here */}
-<ViewEvent setIsView={setIsView}  />
+<ViewEvent setIsView={setIsView} eventData={sortEventData[select]} />
 {/* for view the image */}
 {isView && <div className="z-[2] absolute top-[450px] bottom-0 left-0 right-0">
       <div className="flex justify-center  ">
 
     
  
-      <Image width={600} height={800} alt=''src={'/eventcard.jpg'} />
+      <Image width={600} height={800} alt=''src={sortEventData[select]?.poster} />
       <button className="close z-10 text-black opacity-50 w-fit h-fit rounded-full p-[12px] bg-red-600 relative  top-[-23px] left-[-23px]  font-extrabold text-[24px] " onClick={()=>setIsView(false)} >
     <IoMdClose />
       </button>
@@ -160,12 +195,15 @@ console.log(data)
 <div className="event_info_right mt-[50] flex h-[410px] lg:h-[790px] w-[90%]  md:w-[600px] lg:flex-wrap overflow-x-scroll lg:overflow-y-scroll   ">
 
 {/* event cards start here */}
-{eventData.length==0 && <div className="text-[42px] text-white font-bold">Loading</div> }
+{sortEventData.length==0 && <div className="text-[42px] text-white font-bold">Loading...</div> }
 {
-
-sortEventData?.map(item=>(
+sortEventData.length >0 &&
+sortEventData?.map( (item ,index)=>(
   <div className="relative">
- <EventCard item={item} />
+    <div className='cursor-pointer' onClick={()=>setSelect(index)}>
+    <EventCard item={item}  />
+    </div>
+ 
 <div className="lg:hidden white_glass rounded-full p-[12px] text-[20px] absolute top-[36px]   w-[40px] h-[40px] flex justify-center items-center"><Link href={`/events/${item?._id }`} ><GoLink />
  </Link></div>
   </div>

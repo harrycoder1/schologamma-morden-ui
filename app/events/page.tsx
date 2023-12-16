@@ -1,11 +1,33 @@
 "use client"
 import { EventCard, ViewEvent } from '@/components/EventsInfo'
-import { it } from 'node:test'
-import React, { useState } from 'react'
+import React, { useState ,useContext ,useEffect } from 'react'
 import '@/styles/events.css'
-export default function Committee() {
+import DataContext from '@/context/data/DataContext'
+import { event_data_type } from '@/types'
+import { sortEventsByUpcoming } from '@/utils/sortEvent'
+import Link from 'next/link'
+import { GoLink } from 'react-icons/go'
+export default function Events() {
     const [isView ,setIsView] = useState(false)
-const [eventData ,setEventData] =useState<any>({})
+// const [eventData ,setEventData] =useState<any>({})
+
+
+const [eventData ,setEventData] =useState<event_data_type[]>([]) ;
+
+const dd = useContext(DataContext) ;
+console.log(dd)
+const [sortEventData , setSortEventData] = useState<event_data_type[]>([])
+useEffect(() => {
+  if( dd?.eventDataP.length!==0){
+    const sort = sortEventsByUpcoming(dd?.eventDataP)
+    console.log("this is my sorted array in event page is  :")
+    console.log(sort)
+    dd?.eventDataP.length !== 0 &&   setSortEventData(sort)
+  }
+
+}, [dd?.eventDataP.length])
+
+const [select ,setSelect] =useState<number>(0)
 
   return (
     <div className='flex justify-center items-center'>
@@ -13,7 +35,7 @@ const [eventData ,setEventData] =useState<any>({})
   {/* data start her  */}
   <div className="mt-[32px] flex flex-col justify-center items-center lg:flex-row lg:flex-wrap">
 <div className="comte_left hidden lg:block">
-<ViewEvent setIsView={setIsView}  />
+<ViewEvent setIsView={setIsView} eventData={sortEventData[select]}  />
 
 </div>
 <div className="comte_right mt-[20px] lg:mt-0 lg:ml-[42px] w-[96%] cmte_box  lg:w-[805px]">
@@ -59,8 +81,15 @@ const [eventData ,setEventData] =useState<any>({})
     <div className=" flex flex-row justify-center flex-wrap overflow-y-visible mt-[23px]">
     
   
-{[1,2,3,4,5,6,77,4,3,54,5,6,67,4,4,].map(item=>(
-<EventCard  item={eventData}/> 
+{sortEventData?.map((item ,index)=>(
+  <div className="relative">
+  <div className='cursor-pointer' onClick={()=>setSelect(index)}>
+  <EventCard item={item}  />
+  </div>
+
+<div className="lg:hidden white_glass rounded-full p-[12px] text-[20px] absolute top-[36px]   w-[40px] h-[40px] flex justify-center items-center"><Link href={`/events/${item?._id }`} ><GoLink />
+</Link></div>
+</div>
 
 ))}
 

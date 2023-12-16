@@ -7,7 +7,8 @@ import { FaLinkedinIn } from "react-icons/fa6";
 import { FaFacebookF } from "react-icons/fa";
 import { FiInstagram } from "react-icons/fi";
 import Link from 'next/link';
-function RenderPositionWise({title}:{title:string}) {
+import { team_data_type } from '@/types';
+function RenderPositionWise({title ,eve}:{title:string ,eve:team_data_type}) {
   return (
     <div className="team_item_position_vise_cont ">
   
@@ -16,7 +17,7 @@ function RenderPositionWise({title}:{title:string}) {
     {/* User Profile Card here : */}
     <div className="flex flex-wrap justify-center items-center">
     {[1,2,3,4,56].map(item =>(
-    <ProfileCard />
+    <ProfileCard item={eve} />
   ))}
     </div>
   

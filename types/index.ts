@@ -35,7 +35,10 @@ sdate:string ,
 // "2023-09-30T18:27"
 edate:string ,
 
-venue :string
+venue :string ,
+medium ?:string ,
+updatedAt ?:string ,
+createdAt ?:string ,
 
 poster :string ,
 description :string ,
@@ -51,8 +54,8 @@ _id:string ,
 name:string ,
 email:string ,
 description:string ,
-password:string ,
-username:string ,
+password?:string ,
+username?:string ,
 photo:string ,
 }
 
@@ -74,3 +77,19 @@ cgpa: string ,
 hobby: string ,
 _id: string ,
 } 
+
+export type data_teams_object_type ={
+    id:string ,
+    year:number ,
+    data:team_data_type[]
+}
+
+export interface TimeDifference {
+    days: number;
+    hours: number;
+    minutes: number;
+    seconds: number;
+    weeks: number;
+    months: number;
+    years: number;
+  }

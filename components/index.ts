@@ -9,6 +9,7 @@ import CommitteeCard from "./CommitteeCard";
 import ProfileCard from "./ProfileCard";
 import RenderPositionWise from "./RenderPositionWise";
 import Sliders from "./Sliders";
+import HeadCoHeadMemberFetch from "./HeadCoHeadMemberFetch";
 export {
     About,
     EventsInfo,
@@ -20,5 +21,7 @@ export {
     ProfileCard ,
     RenderPositionWise ,
 Sliders ,
-Update
+Update,
+HeadCoHeadMemberFetch
+
 }
