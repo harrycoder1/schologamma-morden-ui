@@ -11,7 +11,7 @@ import { committeeByID } from '@/utils/committee';
 export default function ProfileCard({item}:{item:team_data_type}) {
   const committee = committeeByID(item?.type)
   return (
-    <div className="user_card_box rounded-md m-[12px] w-[300px] flex flex-col justify-center items-center p-[40px] ">
+    <div className="user_card_box h-[480px] rounded-md m-[12px] w-[300px] flex flex-col justify-center items-center p-[40px] ">
     <div className="user_blur"></div>
     <div className="img_box relative w-[150px] h-[150px] rounded-full bg-gray-600">
   {item?.photoUrl &&  <Image src={item?.photoUrl} width={200} height={200} alt='name' className='w-[100%] rounded-full h-[100%]'/>}

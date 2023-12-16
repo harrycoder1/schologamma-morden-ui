@@ -45,7 +45,7 @@ description :string ,
 joinLink:string ,
     quizeQuestion: any[],
     other:any[],
-
+__v?:number|undefined,
 } ;
 
 export type committee_data_type = {

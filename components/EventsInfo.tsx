@@ -118,22 +118,75 @@ export const ViewEvent =({setIsView ,eventData} :{setIsView:any ,eventData:event
   )
 }
 
-export const EventCard = ({item  }:{item:event_data_type }) =>{
-
-
+export const EventCard = ({item   }:{item:event_data_type  }) =>{
+  const sdateObj = getDayFromDateTime(stringToNumDate(item?.sdate));
+  const edateObj = getDayFromDateTime(stringToNumDate(item?.edate));
+ 
   return(
-    <div className="event_card_cont  " >
+    <div className="relative  card_box">
+    <div className="event_card_cont   " >
     
-      <div className="event_info_card rounded-sm m-[8px] " >
-        <Image src={`${item?.poster}`} width={300} height={420} alt='name' className='w-[100%] h-[100%] rounded-sm z-[-18]' />
-    <div className="event_blue_glass absolute bottom-[20px] left-0 right-0 ">{item?.name}</div>
-    <span className="absolute rounded-full  top-[-3px] bg-red-600 shadow-md right-[-3px] text-[11px] text-white px-[4px] py-[1px] ">{item?.sdate && getEventStatus( new Date(item?.sdate) , new Date (item?.edate))}</span>
-      </div>
-     {/* Ima here */}
-    
-    
-      
+    <div className="event_info_card rounded-sm  m-[8px]  " >
+      <Image src={`${item?.poster}`} width={300} height={420} alt='name' className='  w-[100%] h-[100%] rounded-sm z-[-18]' />
+  <div className="event_blue_glass absolute bottom-[0px]  left-0 right-0 p-[3px]">{item?.name}</div>
+  <span className="absolute rounded-full  top-[-3px] bg-red-600 shadow-md right-[-3px] text-[11px] text-white px-[4px] py-[1px] ">{item?.sdate && getEventStatus( new Date(item?.sdate) , new Date (item?.edate))}</span>
+  
+ 
+  
     </div>
+   {/* Ima here */}
+  {/* our card start */}
+  <div className="absolute lg:hidden detail_info   top-0 left-0 bottom-0 right-0 w-[100%] h-[100%]  event_blue_glass ">
+   
+   <div className="  w-full h-full">
+   <div className="cont_det p-[16px] relative h-[100%]">
+    <div className="title_det text-[26px] font-bold text-blue-200 ">{item.name}</div>
+    <div className="h-description text-justify text-[11px]">{item.description.substring(0,150)  }...</div>
+    <div className="date_cont mt-[18px]">
+  {/* <div className="d_start flex justify-center items-center flex-col"> */}
+  <div className="flex flex-col justify-center rounded-3xl items-center  d_start p-2 mr-2">
+              <span className="text-[10px]  font-semibold">Sart:</span>
+              <span className="font-semibold text-[12px]">
+                {sdateObj.day + " " + sdateObj.monthName + " " + sdateObj.year}
+              </span>
+              <span className="font-semibold text-[12px]">
+                {sdateObj.hours + ":" + sdateObj.minutes + " " + sdateObj.ampm}
+              </span>
+            </div>
+
+  {/* </div> */}
+  <div className="flex flex-col justify-center d_end rounded-3xl items-center  shadow-xl p-2 ml-2">
+              <span className="text-[10px] font-semibold">End:</span>
+              <span className="font-semibold  text-[12px]">
+                {edateObj.day + " " + edateObj.monthName + " " + edateObj.year}
+              </span>
+              <span className="font-semibold text-[12px] ">
+                {edateObj.hours + ":" + edateObj.minutes + " " + edateObj.ampm}
+              </span>
+            </div>
+</div>
+{/* for read more */}
+<div className="absolute bottom-0 left-0 right-0 mt-[12px] flex justify-end">
+<button className='  bg-none mb-[8px] mr-[8px] border-2 border-blue-400 cursor-pointer text-[12px] hover:bg-blue-500 text-white  px-[14px] py-[8px] rounded-md w-fit'><Link href={`/events/${item?._id}`}>Expore..</Link> </button>
+
+</div>
+   </div>
+   </div>
+  </div>
+  
+    
+  </div>
+
+  
+    {/* </div> */}
+ {/* <div className="lg:hidden visible">
+<div className="hidden  hover:visible  white_glass rounded-full p-[12px] text-[20px] absolute top-0 left-0 right-0 bottom-0  w-full h-full z-[5]">
+  hi bor
+  <Link href={`/events/${item?._id }`} ><GoLink />
+ </Link>
+ </div>
+  </div> */}
+  </div>
   )
 }
 export default function EventsInfo() {
@@ -199,14 +252,10 @@ const [select ,setSelect] =useState<number>(0)
 {
 sortEventData.length >0 &&
 sortEventData?.map( (item ,index)=>(
-  <div className="relative">
-    <div className='cursor-pointer' onClick={()=>setSelect(index)}>
-    <EventCard item={item}  />
-    </div>
- 
-<div className="lg:hidden white_glass rounded-full p-[12px] text-[20px] absolute top-[36px]   w-[40px] h-[40px] flex justify-center items-center"><Link href={`/events/${item?._id }`} ><GoLink />
- </Link></div>
-  </div>
+  <div className='cursor-pointer' onClick={()=>setSelect(index)}>
+
+<EventCard item={item}  />
+</div>
 ))}
 
 
