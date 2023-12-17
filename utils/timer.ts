@@ -11,10 +11,10 @@ export function getTimeRemainingToStart(startDateTime: Date):timer_reamaning_typ
     const seconds: number = Math.floor(timeDifferenceMillis / 1000) % 60;
     const minutes: number = Math.floor(timeDifferenceMillis / (1000 * 60)) % 60;
     const hours: number = Math.floor(timeDifferenceMillis / (1000 * 60 * 60)) % 24;
-    const days: number = Math.floor(timeDifferenceMillis / (1000 * 60 * 60 * 24)) %7;
-    const weeks: number = Math.floor(timeDifferenceMillis / (1000 * 60 * 60 * 24 * 7));
+    const days: number = Math.floor(timeDifferenceMillis / (1000 * 60 * 60 * 24)) ;
+    // const weeks: number = Math.floor(timeDifferenceMillis / (1000 * 60 * 60 * 24 * 7));
     return [
-        {name:"weeks" ,value:weeks},
+        // {name:"weeks" ,value:weeks},
        {name:"days" , value:days},
        {name:"hours" , value:hours},
        {name:"minutes" , value:minutes},
@@ -23,3 +23,22 @@ export function getTimeRemainingToStart(startDateTime: Date):timer_reamaning_typ
 }
 
 
+export function formatDateTime(inputDate: string): string {
+    const date = new Date(inputDate);
+  
+    const options: Intl.DateTimeFormatOptions = {
+      year: 'numeric',
+      month: 'short',
+      day: 'numeric',
+      hour: 'numeric',
+      minute: 'numeric',
+      second: 'numeric',
+      hour12: true,
+    };
+  
+    const formattedDate: string = date.toLocaleDateString('en-US', options);
+  
+    return formattedDate;
+  }
+  
+  

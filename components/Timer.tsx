@@ -58,8 +58,8 @@ setTime(timeS)
       </p>
     </div>
 }
-{
-          time[3].value >0  &&
+{/* {
+          time[3].value >0  && */}
     <div className="clock-col">
       <p className="clock-minutes clock-timer">
       { time[3].value}
@@ -68,15 +68,15 @@ setTime(timeS)
       {time[3].name}
       </p>
     </div>
-}
-    <div className="clock-col">
+{/* } */}
+    {/* <div className="clock-col">
       <p className="clock-seconds clock-timer">
       { time[4].value}
       </p>
       <p className="clock-label">
       {time[4].name}
       </p>
-    </div>
+    </div> */}
   </div>
     }
   </div>

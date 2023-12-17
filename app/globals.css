@@ -252,3 +252,7 @@ box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
 backdrop-filter: blur(14.7px);
 -webkit-backdrop-filter: blur(14.7px);
 }
+
+.text_shadow-h{
+  text-shadow: -4px -1px 11px #10182b;
+}

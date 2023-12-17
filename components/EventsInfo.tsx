@@ -20,6 +20,7 @@ import { Timer } from '.';
 import { isValidURL } from '@/utils/verifyLink';
 import { IoLocationSharp } from "react-icons/io5";
 import { SlLayers } from "react-icons/sl";
+import { formatDateTime } from '@/utils/timer';
 
 export const ViewEvent =({setIsView ,eventData} :{setIsView:any ,eventData:event_data_type}) =>{
    {/* height: ;
@@ -111,13 +112,13 @@ export const ViewEvent =({setIsView ,eventData} :{setIsView:any ,eventData:event
   </div>
 <div className="e_descrip">{eventData?.description}</div>
 {socialLink!==undefined && isValidURL(socialLink) &&
-  <div className="bg-orange-500 font-semibold text-[14px] my-[10px]  hover: border-orange-500 " ><Link href={socialLink}> Explore...</Link> </div>
+  <div className="text-orange-500 font-semibold text-[14px] my-[10px] w-fit  hover: border-orange-500 " ><Link href={socialLink}> Explore...</Link> </div>
 
 }
 {/* for  syllabus btn */}
 {syllabusLink && isValidURL(syllabusLink) && 
-<div className='syllabus_cont flex flex-col justify-center items-center'>
-<div className="text-gray-600 text-[12px]">Dowload Syllabus for quize preparation</div>
+<div className='syllabus_cont flex flex-col justify-center items-center my-[16px]'>
+<div className="text-slate-400 text-[13px] mb-2">Dowload Syllabus for quize preparation</div>
 <button className='px-[10px] py-[4px] rounded-md bg-sky-600 hover:bg-sky-800 text-white text-[13px] '>Dowload</button>
 </div>}
 
@@ -162,29 +163,29 @@ export const ViewEvent =({setIsView ,eventData} :{setIsView:any ,eventData:event
 
 {/*  this is our timer or join link or result timer or result link
  */}
-<div className=" mt-[4px] eve_timer  h-[80px] flex flex-col justify-center items-center  ">
+<div className=" my-[10px]   flex flex-col justify-center items-center   ">
 {/* Add timer here */}
 {/* {if(currentDate <)} */}
 
 
 {/* ====================== for countdown section */}
 {isUpcomming &&
-<div className='flex flex-col justify-center items-center'> 
-  <div className="text-gray-300 text-[14px] text-center">Event Start in</div>
+<div className='flex flex-col justify-center items-center my-[16px]'> 
+  <div className="text-gray-300 text-[14px] text-center mb-2">Event Start in</div>
 <Timer startTime={eventData?.sdate} /> 
 </div> }
 
 {/* for result */}
 {isResultComming && isUpcomming==false && (resultRealeseDate!==undefined) &&
-  <div className='flex flex-col justify-center items-center'> 
-  <div className="text-gray-300 text-[14px] text-center">Result will be Declare  in {resultRealeseDate}</div>
+  <div className='flex flex-col justify-center items-center my-[16px]'> 
+  <div className="text-cyan-300 text-[13px] text-center mb-2 ">Result will be Declare  at {resultRealeseDate && formatDateTime(resultRealeseDate)}</div>
 <Timer startTime={resultRealeseDate.toString()} />
 </div>
  }
 
 {isResultOut && resultLink!==undefined && isValidURL(resultLink) && !(stringToNumDate(currentDate.toString()) >= stringToNumDate(eventData.sdate) && stringToNumDate(currentDate.toString())< stringToNumDate(eventData?.edate))&&
-  <div className='flex flex-col justify-center items-center'> 
-  <div className="text-green-600 text-[14px] text-center">Result has been Declared at :{resultRealeseDate}</div>
+  <div className='flex flex-col justify-center items-center my-[10px]'> 
+  <div className="text-green-600 text-[13px] text-center">Result has been Declared at :{resultRealeseDate && formatDateTime(resultRealeseDate) }</div>
 <button className='bg-green-600 mb-[8px] mr-[8px] border-2  border-green-400 cursor-pointer text-[12px] hover:bg-green-700 text-white  px-[14px] py-[8px] rounded-md w-fit'><Link href={resultLink}>Dowload</Link> </button>
   
 </div>
@@ -192,26 +193,28 @@ export const ViewEvent =({setIsView ,eventData} :{setIsView:any ,eventData:event
 
 {/* for join link */}
 {joinLink && (stringToNumDate(currentDate.toString()) >= stringToNumDate(eventData.sdate) && stringToNumDate(currentDate.toString())< stringToNumDate(eventData?.edate)) && isValidURL(joinLink) &&
-<button className='bg-none mb-[8px] mr-[8px] border-2 border-green-400 cursor-pointer text-[12px] hover:bg-green-500 text-white  px-[14px] py-[8px] rounded-md w-fit'><Link href={joinLink}>Join now</Link> </button>
+<button className='bg-none mb-[8px] mr-[8px] border-2 border-green-400 cursor-pointer text-[12px] hover:bg-green-500 text-white  px-[14px] py-[8px] rounded-md w-fit my-[10px]' ><Link href={joinLink}>Join now</Link> </button>
 }
 
 {/*  for say event has been close*/}
-{eventData?.edate && (stringToNumDate(currentDate.toString()) >stringToNumDate(eventData?.edate)) && resultLink===undefined &&resultRealeseDate ===undefined && 
-  <div className="text-red-600 text-[14px] text-center">Event has been ended !</div>
+{eventData?.edate &&( (stringToNumDate(currentDate.toString()) >stringToNumDate(eventData?.edate)) && (resultLink===undefined || resultLink && !isValidURL(resultLink) ) &&resultRealeseDate ===undefined) &&
+(eventData?.other && eventData.other.length ===0 )&& 
+  <div className="text-red-600 text-[14px] text-center font-semibold my-[10px]">Event has been ended !</div>
 
+}
+
+{
+  eventData?.medium && eventData.medium ==="offline event" && (stringToNumDate(eventData?.sdate)< stringToNumDate(currentDate.toString())) && (stringToNumDate(eventData?.edate)> stringToNumDate(currentDate.toString())) &&
+  <div className='h-description  text-[13px] text-teal-600  text-center'>  "🚀 The {eventData?.name} event is underway! Come join us now at {venue && venue} and be a part of this amazing experience."</div>
 }
 {/* for result date */}
 {/* {eventData?} */}
 
 </div>
-<div className="event_btn">
-  {/* <button className='eve_read_btn'>Read More...</button> */}
-  </div>
+
 </div>
   </div>
-  <div className="e_media">
-
-  </div>
+  
 
   {/* for margin */}
   <div className="mb-[24px]"></div>
