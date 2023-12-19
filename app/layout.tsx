@@ -1,7 +1,7 @@
 import type { Metadata } from 'next'
 import { Inter , Manrope } from 'next/font/google'
 import './globals.css'
-import { Nav } from '@/components'
+import { Footer, Nav } from '@/components'
 const monocque = Manrope({weight:["800" , "300" ,"200" , "600" ,"700" ,"400"] ,subsets:['cyrillic' ,'cyrillic-ext'] })
 const inter = Inter({ subsets: ['latin'] })
 import DataDState from '@/context/data/DataDState'
@@ -17,7 +17,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body className={`${monocque.className} myscreen`}>
+      <body className={`${monocque.className} myscreen relative overflow-x-hidden`}>
         <DataDState>
 
     
@@ -39,6 +39,11 @@ export default function RootLayout({
         {children}
         </div>
         </DataDState>
+{/* for bottom space only */}
+<div className="pb-[80px]"></div>
+
+<Footer />
+
         </body>
     </html>
   )

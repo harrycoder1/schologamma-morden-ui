@@ -48,7 +48,9 @@ export const ViewEvent =({setIsView ,eventData} :{setIsView:any ,eventData:event
   const registrationLink = eventData?.registrationFormLink
   const isUpcomming:Boolean = stringToNumDate(currentDate.toString() )  < stringToNumDate(eventData?.sdate) //event 
   
-  const isResultComming:Boolean =((resultRealeseDate !== undefined ) && (stringToNumDate( resultRealeseDate) > stringToNumDate(eventData.edate)) && (stringToNumDate( resultRealeseDate) >  stringToNumDate(currentDate.toString() )))
+  const isResultComming:Boolean =((resultRealeseDate !== undefined ) && (stringToNumDate( resultRealeseDate) > stringToNumDate(eventData.edate)) && (stringToNumDate( resultRealeseDate) >  stringToNumDate(currentDate.toString() ) && (stringToNumDate( currentDate.toString()) >  stringToNumDate(eventData.edate))
+  
+  ))
 
   const isResultOut :Boolean =((resultRealeseDate !== undefined ) && (stringToNumDate( resultRealeseDate) > stringToNumDate(eventData.edate)) && (stringToNumDate( resultRealeseDate) < stringToNumDate(currentDate.toString() )))
 

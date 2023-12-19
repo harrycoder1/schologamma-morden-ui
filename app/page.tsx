@@ -14,7 +14,7 @@ export default function Home() {
 <About />
 <Works />
 <EventsInfo />
-<Footer />
+{/* <Footer /> */}
 
 {/* </div> */}
 

@@ -10,7 +10,7 @@ export default function Nav() {
 const [isToogle ,setIsToggle] =useState(false)
   return (
     <div className='text-white '>
-<nav className='flex flex-row justify-between items-center mx-[8px] lg:mx-[80px] mt-[42px]  '>
+<nav className='flex flex-row justify-between items-center mx-[8px] lg:mx-[80px] mt-[0px]  pt-[30px]  '>
   <div className="left flex flex-row">
 
   <span className='text-red-300 font-extrabold lg:px-[15px] px-[4px] py-[8px] '>LOGO</span>
