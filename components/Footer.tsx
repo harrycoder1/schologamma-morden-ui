@@ -58,9 +58,13 @@ export default function Footer() {
   <div className="px-4 py-16 sm:px-6 lg:col-span-3 lg:px-8">
     <div className="grid grid-cols-1 gap-8 sm:grid-cols-2">
       <div>
-        <p className='white_glass p-[24px] w-[200px] h-[200px] rounded-full'>
-       <Image src={'/schologammalogo.png'} width={150} height={150}  alt='schologamma Logo'/>
+        <div className="flex justify-center items-center w-full sm:w-fit">
+
+        <p className='bg-[#78aeecb3]  w-[200px] h-[200px] flex justify-center items-center rounded-full'>
+       <Image src={'/schologammalogo.png'} width={400} height={400}  alt='schologamma Logo' className='w-[130px] h-[130px]'/>
         </p>
+        </div>
+       
 
         <ul className="mt-8 space-y-1 text-sm text-gray-700 dark:text-gray-200">
           <li> <b> Address</b> <br />

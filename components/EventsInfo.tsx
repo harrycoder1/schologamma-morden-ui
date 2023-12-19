@@ -26,6 +26,7 @@ export const ViewEvent =({setIsView ,eventData} :{setIsView:any ,eventData:event
    {/* height: ;
     max-width: 400px;
     width: auto; */}
+    const [viewLarge ,setViewLarge] =useState(false)
     const sdateObj = getDayFromDateTime(stringToNumDate(eventData?.sdate));
   const edateObj = getDayFromDateTime(stringToNumDate(eventData?.edate));
 
@@ -66,7 +67,7 @@ export const ViewEvent =({setIsView ,eventData} :{setIsView:any ,eventData:event
 <Image src={eventData?.poster} width={400} height={500} alt='photo' className='h-[100%] w-[100%] rounded-sm'/>
 <div className="e_img_view ">
 
-  <button className='text-[24px] bg-black opacity-50 ' onClick={()=>(setIsView(true))}><LiaExpandSolid /></button>
+  <button className='text-[24px] bg-black opacity-50 ' onClick={()=>(setViewLarge(true))}><LiaExpandSolid /></button>
 </div>
   </div>
 
@@ -221,6 +222,21 @@ export const ViewEvent =({setIsView ,eventData} :{setIsView:any ,eventData:event
   {/* for margin */}
   <div className="mb-[24px]"></div>
 </div>
+{viewLarge && <div className="z-[40] inset fixed top-0 bottom-0 left-0 right-0  bg-gray-[">
+  <div className="flex justify-center items-center w-[100vw] h-[100vh]">
+
+
+      <div className="flex justify-center  ">
+
+    
+ 
+      <Image width={600} height={800} alt=''src={eventData.poster} />
+      <button className="close z-10 text-black opacity-50 w-fit h-fit rounded-full p-[12px] bg-red-600 relative  top-[-23px] left-[-23px]  font-extrabold text-[24px] " onClick={()=>setViewLarge(false)} >
+    <IoMdClose />
+      </button>
+      </div>
+      </div>
+      </div>}
 </div>
   )
 }
@@ -339,17 +355,7 @@ const [select ,setSelect] =useState<number>(0)
 {/* view card design here */}
 <ViewEvent setIsView={setIsView} eventData={sortEventData[select]} />
 {/* for view the image */}
-{isView && <div className="z-[2] absolute top-[450px] bottom-0 left-0 right-0">
-      <div className="flex justify-center  ">
 
-    
- 
-      <Image width={600} height={800} alt=''src={sortEventData[select]?.poster} />
-      <button className="close z-10 text-black opacity-50 w-fit h-fit rounded-full p-[12px] bg-red-600 relative  top-[-23px] left-[-23px]  font-extrabold text-[24px] " onClick={()=>setIsView(false)} >
-    <IoMdClose />
-      </button>
-      </div>
-      </div>}
 
 </div>
 <div className="event_info_right mt-[50] flex h-[410px] lg:h-[790px] w-[90%]  md:w-[600px] lg:flex-wrap overflow-x-scroll lg:overflow-y-scroll   ">

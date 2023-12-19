@@ -38,11 +38,12 @@ export default function Update({slide}:{slide:slider_type}) {
      </div>
 {/* for url btn */}
      {
-              slide?.url !==undefined && slide?.url !=='/' &&
-<>
-
+      slide?.description !==undefined && slide?.description.trim() !=='' &&
 <div className="up_msg  block lg:hidden mt-[40px] text-[14px] lg:text-[20px] text-center">{slide?.description}</div>
-
+}
+{
+          slide?.url !==undefined && slide?.url !=='/' &&
+          <>
 <button className="up_btn mt-[60px] block lg:hidden rounded-sm  "><Link href={slide?.url}>Expore...</Link> </button>
 </>
              
