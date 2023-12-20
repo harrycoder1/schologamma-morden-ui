@@ -1,5 +1,6 @@
 // import Image from 'next/image'
 import { About, EventsInfo, Footer, Header, Nav, Sliders, Update, Works } from '@/components'
+import RevealOnScroll from '@/components/RevealOnScroll'
 export default function Home() {
   return (
     <main className="relative ">
@@ -10,10 +11,17 @@ export default function Home() {
 {/* <Nav /> */}
 <Header/>
 {/* <Update /> */}
+{/* <Reveal  */}
+<RevealOnScroll >
 <Sliders />
-<About />
-<Works />
-<EventsInfo />
+
+</RevealOnScroll>
+<RevealOnScroll ><About /></RevealOnScroll>
+<RevealOnScroll ><Works /></RevealOnScroll>
+<RevealOnScroll ><EventsInfo /></RevealOnScroll>
+
+
+
 {/* <Footer /> */}
 
 {/* </div> */}
