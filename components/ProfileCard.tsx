@@ -18,10 +18,12 @@ export default function ProfileCard({item}:{item:team_data_type}) {
     
     </div>
     <div className="user_detail flex flex-col justify-center items-center mt-[24px] text-[18px]">
-      <div className="text-cyan-300 font-extrabold tex-[24px]  text-center " >{committee?.name}</div>
-      <div className="text-slate-400 font-bold text-center">{item?.position}</div>
+    <div className="text-[16px] flex flex-col justify-center items-center"><span className='font-extrabold text-center'> {item?.name}</span></div>
+    <div className="text-slate-400 font-bold text-center">{item?.position}</div>
+
+      <div className="text-cyan-300 font-extrabold tex-[24px]  text-center " >{committee?.name ==="Admin"?"":committee?.name}</div>
     
-      <div className="text-[16px] flex flex-col justify-center items-center"><span>Name:</span> <span className='font-extrabold text-center'> {item?.name}</span></div>
+   
       <div className="social_media_cot flex flex-row justify-center items-center">
 {/* for share social links */}
      {item?.linkedinUrl && item.linkedinUrl.startsWith("https://") && <div className='social_media_btn hover:text-blue-400'><Link href={item.linkedinUrl}><FaLinkedinIn /></Link></div> }
