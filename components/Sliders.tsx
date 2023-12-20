@@ -5,12 +5,14 @@ import {GrFormNext ,GrFormPrevious} from 'react-icons/gr'
 import Link from 'next/link';
 import { FetchURL } from '@/utils/url';
 import Image from 'next/image';
+import  '@/styles/animation.css'
 
 import { Update } from '.';
 import { slider_type } from '@/types';
 const Sliders = () => {
 //   console.log("this is our fetch url "+process.env.ADMINURL_PATH)
 // console.log("we are current in "+process.env.NODE_ENV)
+
 
   const [slides , setSlides] = useState<slider_type[]>([])
   useEffect(() => {
@@ -23,20 +25,32 @@ console.log(data)
   fetData()
   }, [])
 
+  function changeAnimation(): string {
+    const values: string[] = [ 'slide-in-right', 'slide-in-left'];
+    const randomIndex: number = Math.floor(Math.random() * values.length);
+    const randomValue: string = values[randomIndex];
+  return randomValue
+  }
+  
 
   const [currentIndex, setCurrentIndex] = useState(0);
-
+const [animationCss,setAnimationCss] =useState("slide-in-left")
   // Function to change the slide to the next one
   const nextSlide = () => {
     setCurrentIndex((prevIndex) =>{
       if(prevIndex >= (slides.length -1)) return (0)
+
      else  return (prevIndex + 1) });
+setAnimationCss( changeAnimation())
+
   };
 
   const prevSlide = () => {
     setCurrentIndex((prevIndex) =>{
       if(prevIndex <= 0) return slides.length-1
      else  return (prevIndex - 1) })
+setAnimationCss( changeAnimation())
+
   }
 
 
@@ -44,6 +58,7 @@ console.log(data)
   useEffect(() => {
     // Use setInterval to automatically change the slide every 2 seconds
     const interval = setInterval(nextSlide, 4500);
+setAnimationCss( changeAnimation())
 
     return () => {
       // Clear the interval to avoid memory leaks
@@ -57,7 +72,12 @@ console.log(data)
 //   }
 
   return (
+    // <div className='update_box w-[95%] lg:w-[1170px]  p-[14px] md:p-0 '>
+
     <div className='mt-[50px] md:mt-[83px] relative'>
+          <div className="up_heading pt-[38px] pb-[15px] text-[32px] lg:text-[44px] text-center">
+        Our Latest Updates
+        </div>
       <div className="z-[3] h-fit ">
         {/* {slides?.map((item, index) => ( */}
 
@@ -67,8 +87,19 @@ console.log(data)
             // initial={{ opacity: 0 }}
             // animate={{ opacity: index === currentIndex ? 1 : 0 }}
           ><>
+{/*           
+<div className="
+slide-top "> */}
+{slides?.map((item , index)=>(
+         index===currentIndex&&
+         <div className={`${animationCss}`}>
+         <Update slide={slides[currentIndex>0?currentIndex:0]} />
 
-          <Update slide={slides[currentIndex]} />
+         </div>
+
+))}
+
+          {/* </div> */}
             {/* <Image 
               // initial={{ opacity: 0, scale: 0.5 }}
               // animate={{ opacity: 1, scale: 1 }}
@@ -108,6 +139,7 @@ console.log(data)
             </button>
            
     </div>
+    // </div>
   );
 };
 

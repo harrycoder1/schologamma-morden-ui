@@ -5,16 +5,16 @@ import Image from 'next/image'
 import Link from 'next/link'
 export default function Update({slide}:{slide:slider_type}) {
   return (
-    <div className="flex justify-center items-center mt-[150px] ">
+    <div className="flex justify-center items-center mt-[30px] ">
 
    
     <div className='update_box w-[95%] lg:w-[1170px]  p-[14px] md:p-0 '>
         <div className="update_blur"></div>
      {/* data section */}
      <div className="flex flex-col justify-center  items-center">
-        <div className="up_heading pt-[38px] pb-[15px] text-[32px] lg:text-[44px] text-center">
+        {/* <div className="up_heading pt-[38px] pb-[15px] text-[32px] lg:text-[44px] text-center">
         Our Latest Updates
-        </div>
+        </div> */}
 
         <div className="up_content w-[95%] lg:w-[90%] flex justify-center lg:justify-between relative  lg:flex-row flex-col mt-[40px] ">
 

@@ -11,7 +11,7 @@ const words = [
   "Schologamma Forum's Inspiring Journey",
   "Your Story Starts at Schologamma",
   "Schologamma Forum's Interactive Learning Hub",
-  "Building Dreams, Creating Futures: Schologamma's Vision for Tech Enthusiasts",
+  "Schologamma's Vision for Tech Enthusiasts",
   "Schologamma Forum's Playground for Innovation",
   " Schologamma Forum's Gateway to Tech Excellence"
 ];
@@ -68,16 +68,19 @@ export default function Header() {
     <div className='flex flex-col justify-center items-center  mt-[112px] h-auto overflow-hidden' >
       {/* heading start here */}
       <div className=" flex flex-row justify-center items-center h-auto  overflow-hidden ">
-  <span>
+  <div>
     <div className="heading-span font-extrabold text-[37px] lg:text-[62px]  px-[8px] word">
       Welcome to Schologamma Forum
       </div>
-    <div className="heading-span2 font-extrabold text-center mt-[4px] text-[24px] lg:text-[32px] h-min-[80px] h-auto">
+      <div className="min-h-[170px] md:min-h-[80px] ">
+
+      
+    <div className="heading-span2 font-extrabold text-center mt-[4px] text-[24px] lg:text-[32px]  h-auto">
     {displayedText}
       
-    
     </div>
-  </span>
+    </div>
+  </div>
 </div>
 <div className="h-description lg:w-[59%] my-[54px] ">At Schologamma Forum, we're dedicated to fostering a vibrant community within the Computer Science Department. We strive to create an environment that encourages both technical prowess and holistic development among our students</div>
     </div>

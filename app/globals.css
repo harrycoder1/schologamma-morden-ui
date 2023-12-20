@@ -256,3 +256,26 @@ backdrop-filter: blur(14.7px);
 .text_shadow-h{
   text-shadow: -4px -1px 11px #10182b;
 }
+
+/* styles.css */
+
+/* Define your custom slide animations */
+@keyframes slideLeft {
+  from {
+    transform: translateX(100%);
+  }
+  to {
+    transform: translateX(0);
+  }
+}
+
+@keyframes slideRight {
+  from {
+    transform: translateX(-100%);
+  }
+  to {
+    transform: translateX(0);
+  }
+}
+
+/* Add more animation keyframes as needed */

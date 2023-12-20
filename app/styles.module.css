@@ -1,0 +1,30 @@
+/* "use client"; */
+/* styles.module.css */
+
+/* Define your custom slide animations */
+.sliderAnimation {
+    animation-duration: 0.5s; /* Adjust the duration as needed */
+    animation-timing-function: ease-in-out; /* Adjust the timing function */
+  }
+  
+  /* Define individual slide animations */
+  @keyframes slideLeft {
+    from {
+      transform: translateX(100%);
+    }
+    to {
+      transform: translateX(0);
+    }
+  }
+  
+  @keyframes slideRight {
+    from {
+      transform: translateX(-100%);
+    }
+    to {
+      transform: translateX(0);
+    }
+  }
+  
+  /* Add more animation keyframes and classes as needed */
+  
