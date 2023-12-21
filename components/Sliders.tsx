@@ -41,7 +41,7 @@ const [animationCss,setAnimationCss] =useState("slide-in-left")
       if(prevIndex >= (slides.length -1)) return (0)
 
      else  return (prevIndex + 1) });
-setAnimationCss( changeAnimation())
+setAnimationCss("slide-in-left")
 
   };
 
@@ -49,7 +49,7 @@ setAnimationCss( changeAnimation())
     setCurrentIndex((prevIndex) =>{
       if(prevIndex <= 0) return slides.length-1
      else  return (prevIndex - 1) })
-setAnimationCss( changeAnimation())
+setAnimationCss("slide-in-right")
 
   }
 
@@ -58,7 +58,7 @@ setAnimationCss( changeAnimation())
   useEffect(() => {
     // Use setInterval to automatically change the slide every 2 seconds
     const interval = setInterval(nextSlide, 4500);
-setAnimationCss( changeAnimation())
+setAnimationCss("slide-in-left")
 
     return () => {
       // Clear the interval to avoid memory leaks
@@ -81,41 +81,25 @@ setAnimationCss( changeAnimation())
       <div className="z-[3] h-fit ">
         {/* {slides?.map((item, index) => ( */}
 
-          <div
-            // key={ite}
-            // className={`slide ${index === currentIndex ? 'active' : ''}`}
-            // initial={{ opacity: 0 }}
-            // animate={{ opacity: index === currentIndex ? 1 : 0 }}
-          ><>
+          <div className='h-[990px] lg:h-auto '
+      
+          >
 {/*           
 <div className="
 slide-top "> */}
 {slides?.map((item , index)=>(
          index===currentIndex&&
-         <div className={`${animationCss}`}>
+         <div className={`${animationCss} `}>
          <Update slide={slides[currentIndex>0?currentIndex:0]} />
 
          </div>
 
 ))}
 
-          {/* </div> */}
-            {/* <Image 
-              // initial={{ opacity: 0, scale: 0.5 }}
-              // animate={{ opacity: 1, scale: 1 }}
-              // transition={{ duration: 0.5 }}
-              width={1028} height={559} className='w-screen h-fit'
-            src={slides[currentIndex]?.imageLink} alt={`Slide ${ 1}`} />
-            {
-              slides[currentIndex]?.url !==undefined && slides[currentIndex]?.url !=='/' &&
-              <div className='absolute bottom-0 left-0 right-0 text-cyan-200 drop-shadow-lg   rounded-md flex justify-center items-center '>
-              <button className='bg-black opacity-40 w-fit px-[2px] py-[1px]  rounded-full text-[9px] md:text-[12px] ' > <Link href={`${slides[currentIndex]?.url}`}>Expore...</Link>
-                </button>
-             </div>
-            } */}
+          
        
 
-  </>
+  
 
           </div>
         

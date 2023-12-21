@@ -71,7 +71,7 @@ if(committeProfileData?.name == "" ) {return <><div className="text--[32px] lg:t
     <div>
       <div className="mt-[50px] flex  flex-col lg:flex-row lg:justify-between">
 
-        <div className="left_cmte w-[95%] h-[1000px] lg:w-[384px] left_box  flex flex-col  items-center p-[24px]">
+        <div className="left_cmte w-[95%] h-auto lg:h-[1000px] lg:w-[384px] left_box  overflow-y-auto flex flex-col  items-center p-[24px]">
         <div className="img_box relative rounded-full w-[180px] h-[180px] bg-gray-600">
          {committeProfileData?.photo && <Image src={`${committeProfileData?.photo}`}width={200} height={200}  alt="name" className="w-[100%] h-[100%] rounded-full"/>}
         </div>
@@ -89,6 +89,8 @@ if(committeProfileData?.name == "" ) {return <><div className="text--[32px] lg:t
 
             <div className="eve_cont_cmte flex flex-row   h-[350px] overflow-x-scroll">
               {/* for committies events fetch */}
+              {eventByCommitttee.length ===0 && <div className='text-[24px] font-bold flex justify-center items-center text-sky-300 '><div className="text-center">Event Coming Soon...
+                </div> </div>}
               {eventByCommitttee?.map(item=>(
                 <EventCard item={item}/>
               ))}

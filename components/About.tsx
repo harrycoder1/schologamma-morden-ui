@@ -7,7 +7,7 @@ import TextOnScroll from './TextOnScroll'
 export default function About() {
   return (
    
- <div className="flex justify-center items-center mt-[150px] ">
+ <div className="flex justify-center items-center mt-[50px] md:mt-[150px] ">
 
    
 <div className='about_box w-[95%]  md:w-auto lg:w-[1170px]'>

@@ -6,7 +6,7 @@ import Image from 'next/image'
 
 export default function ({committee}:{committee:committee_data_type}) {
   return (
-<div className=" event_card_box  h-auto  cursor-pointer mx-[14px] my-[20px] w-[340px] p-[40px] rounded-[30px] ">
+<div className=" event_card_box  h-auto  cursor-pointer mx-[14px] my-[20px] w-[340px] md:h-[366px] p-[40px] rounded-[30px] ">
         <div className="cmte_blur2 "></div>
     
           <div className="commitee_container flex flex-col items-center justify-center ">

@@ -1,6 +1,7 @@
 import React from 'react'
 import { work_card } from '@/constants'
 import '@/styles/works.css'
+import TextOnScroll from './TextOnScroll'
 export default function Works() {
   return (
     <div className=' flex justify-center mt-[140px] lg:mt-[278px] ' >
@@ -11,7 +12,9 @@ export default function Works() {
       </div>
       <div className="right_work">
         <div className="right_work_card_cont">
-{work_card.map(item=>(
+{work_card?.map(item=>(
+
+<TextOnScroll animation='fade-in-left' >
  <div className="work_card flex flex-col md:flex-row space-x-0 md:space-x-[74px] mb-[24px] lg:mb-0">
  <div className="work_card_left">
    <div className="work_head_line"></div>
@@ -23,6 +26,8 @@ export default function Works() {
 {item.message}
  </div>
 </div>
+
+</TextOnScroll>
   
 ))}
           {/* work card start here */}

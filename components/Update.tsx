@@ -1,11 +1,14 @@
-import React from 'react'
+"use client"
+import React, { useState } from 'react'
 import '@/styles/update.css'
 import { slider_type } from '@/types'
 import Image from 'next/image'
 import Link from 'next/link'
+import { BiSolidHide } from "react-icons/bi";
 export default function Update({slide}:{slide:slider_type}) {
+  const [view ,setView] =useState(false)
   return (
-    <div className="flex justify-center items-center mt-[30px] ">
+    <div className= "flex justify-center items-center mt-[30px] h-[990px] lg:h-auto ">
 
    
     <div className='update_box w-[95%] lg:w-[1170px]  p-[14px] md:p-0 '>
@@ -36,10 +39,12 @@ export default function Update({slide}:{slide:slider_type}) {
         </div>
     </div>
      </div>
-{/* for url btn */}
+
+    
+    
      {
       slide?.description !==undefined && slide?.description.trim() !=='' &&
-<div className="up_msg  block lg:hidden mt-[40px] text-[14px] lg:text-[20px] text-center">{slide?.description}</div>
+<div className="up_msg  block lg:hidden mt-[40px] text-[14px] lg:text-[20px] text-center">{slide.description.length <=300 ? slide.description :slide.description.substring(0,300)  +"..."}</div>
 }
 {
           slide?.url !==undefined && slide?.url !=='/' &&

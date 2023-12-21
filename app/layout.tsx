@@ -25,7 +25,8 @@ export default function RootLayout({
         <div className="blur_cont">
 
        
- <div className="blur-01"></div>
+ <div className="blur-01 hidden md:block"></div>
+ <div className="blur-01-s md:hidden"></div>
  <div className="blur-02"></div>
   <div className="blur-03  "></div>
   <div className="blur-04"></div>

@@ -5,7 +5,7 @@ import { ProfileCard } from "."
     return <>
     <div className="team_item_position_vise_cont ">
       
-      <div className="team_title_pos  font-bold lg:text-[40px] text-[28px]  text-white shadow-md text-center">Heads:</div>
+      <div className={`${!sortedTeams["Head"]&&"hidden"} team_title_pos  font-bold lg:text-[40px] text-[21px]  text-slate-400 shadow-md text-center`}>Heads:</div>
     
       {/* User Profile Card here : */}
       <div className="flex flex-wrap justify-center items-center">
@@ -19,7 +19,7 @@ import { ProfileCard } from "."
     {/* for co-head */}
     <div className="team_item_position_vise_cont ">
       
-      <div className="team_title_pos  font-bold lg:text-[40px] text-[28px]  text-white shadow-md text-center">Co-Heads:</div>
+      <div className={`${!sortedTeams["Co-Head"] &&"hidden"} team_title_pos  font-bold lg:text-[40px] text-[21px]  text-slate-400 shadow-md text-center`}>Co-Heads:</div>
     
       {/* User Profile Card here : */}
       <div className="flex flex-wrap justify-center items-center">
@@ -33,7 +33,7 @@ import { ProfileCard } from "."
     {/* for member */}
     <div className="team_item_position_vise_cont ">
       
-      <div className="team_title_pos  font-bold lg:text-[40px] text-[28px]  text-white shadow-md text-center">Members:</div>
+      <div className={`${ !sortedTeams["Member"]&&"hidden"} team_title_pos  font-bold lg:text-[40px] text-[21px]  text-slate-400 shadow-md text-center`}>Members:</div>
     
       {/* User Profile Card here : */}
       <div className="flex flex-wrap justify-center items-center">

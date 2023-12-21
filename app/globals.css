@@ -240,7 +240,7 @@ background-clip: text;
   /* font-size: 32px; */
   font-style: normal;
   /* font-weight: 800; */
-  line-height: 75px;
+  /* line-height: 75px; */
   letter-spacing: -1.28px;
 }
 
@@ -278,4 +278,22 @@ backdrop-filter: blur(14.7px);
   }
 }
 
+.blur-01-s,
+.blur-01-s * {
+  box-sizing: border-box;
+}
+.blur-01-s {
+  overflow: hidden;
+  background: #002853;
+  border-radius: 50%;
+  width: 1013px;
+  /* width: auto; */
+  height: 1013px;
+  position: relative;
+  filter: blur(282px);
+  /* translate: -336px -305px; */
+  position: absolute;
+  top: -105px;
+  left: 16px;
+}
 /* Add more animation keyframes as needed */
